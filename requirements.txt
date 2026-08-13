@@ -1,0 +1,10 @@
+python-dotenv
+groq
+google-genai
+PyGithub
+livekit-agents
+livekit-plugins-google
+pdfplumber
+fastmcp
+langgraph
+reportlab
