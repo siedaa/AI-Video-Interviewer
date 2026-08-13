@@ -133,6 +133,7 @@ Work through these **in order**. Each phase has a goal, what "done" looks like, 
 | Phase | Status | Notes |
 |---|---|---|
 | 0 — Scaffolding | In progress | Repo skeleton, `.venv`, verify_keys.py in place; all 4 key checks pass (Gemini/Groq/GitHub/LiveKit OK). Awaiting user's own run of verify_keys.py. |
+| 1 — Prep pipeline | In progress | src/schemas.py, jd_parser, resume_parser, github_agent, question_planner, run_prep.py written. Ran end-to-end on test inputs: 12 questions / 4 github-grounded with verified repo/file/commit refs. Stopping for user to test run_prep.py. |
 | 1 — Prep pipeline | Not started | |
 | 2 — LangGraph + HITL | Not started | |
 | 3 — Guardrails | Not started | |

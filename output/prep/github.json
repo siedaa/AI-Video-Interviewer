@@ -1,0 +1,604 @@
+{
+  "username": "siedaa",
+  "profile_url": "https://github.com/siedaa",
+  "repos": [
+    {
+      "name": "flyrank-capstone-image-relevance",
+      "full_name": "siedaa/flyrank-capstone-image-relevance",
+      "language": "Python",
+      "languages": [
+        "Python",
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2026-08-12T21:38:43+00:00",
+      "pushed_at": "2026-08-12T21:38:37+00:00",
+      "stars": 0,
+      "top_repository": true,
+      "recent_commits": [
+        {
+          "message": "Phase 1: organize and verify image dataset",
+          "date": "2026-08-12T21:35:51+00:00"
+        },
+        {
+          "message": "Phase 1: add mismatch guard rule to design doc",
+          "date": "2026-08-12T21:01:51+00:00"
+        },
+        {
+          "message": "Add design doc, ORM models, image tagging schema, and placeholder posts",
+          "date": "2026-08-12T19:07:56+00:00"
+        },
+        {
+          "message": "Initial project skeleton",
+          "date": "2026-08-12T18:28:05+00:00"
+        },
+        {
+          "message": "Initial commit",
+          "date": "2026-08-12T18:15:56+00:00"
+        }
+      ],
+      "readme_excerpt": "# AI Image Understanding & Content Matching Engine\n\nAn AI-powered engine for understanding image content and matching relevance.\n",
+      "files_read": [
+        {
+          "path": "README.md",
+          "excerpt": "# AI Image Understanding & Content Matching Engine\n\nAn AI-powered engine for understanding image content and matching relevance.\n"
+        },
+        {
+          "path": "docker-compose.yml",
+          "excerpt": "services:\n  db:\n    image: postgres:16\n    container_name: imagematch_db\n    ports:\n      - \"5432:5432\"\n    environment:\n      POSTGRES_USER: postgres\n      POSTGRES_PASSWORD: postgres\n      POSTGRES_DB: imagematch\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n\nvolumes:\n  postgres_data:\n"
+        },
+        {
+          "path": "requirements.txt",
+          "excerpt": "fastapi\nuvicorn[standard]\npydantic\npydantic-settings\nsqlalchemy\npsycopg2-binary\npython-dotenv\ngoogle-genai\npytest\nhttpx\npillow\n"
+        }
+      ]
+    },
+    {
+      "name": "AI-red-teaming-toolkit-for-RAG-chatbot-security",
+      "full_name": "siedaa/AI-red-teaming-toolkit-for-RAG-chatbot-security",
+      "language": "Python",
+      "languages": [
+        "Python",
+        "url"
+      ],
+      "description": "Building an AI red teaming toolkit for RAG chatbot security",
+      "updated_at": "2026-08-06T11:11:23+00:00",
+      "pushed_at": "2026-08-06T11:11:09+00:00",
+      "stars": 0,
+      "top_repository": true,
+      "recent_commits": [
+        {
+          "message": "Attack prompt library",
+          "date": "2026-08-06T11:10:09+00:00"
+        },
+        {
+          "message": "update Readme.md",
+          "date": "2026-07-14T20:00:23+00:00"
+        },
+        {
+          "message": "Initial commit: multimodal RAG system over Attention Is All You Need paper",
+          "date": "2026-07-14T19:53:35+00:00"
+        }
+      ],
+      "readme_excerpt": "# Multimodal RAG \u2014 \"Attention Is All You Need\"\n\n> A multimodal Retrieval-Augmented Generation system over the Transformer paper.\n> Extracts text, tables, and figures from the PDF, embeds everything with Google\n> Gemini, stores vectors in Chroma DB, and answers questions via grounded\n> generation with figure re-attachment for vision-rich answers.\n\n**Built by Maha Fatima** | [LinkedIn Post](https://www.linkedin.com/posts/activity-7482876699869773824-71mx) | [arXiv:1706.03762](https://arxiv.org/abs/1706.03762) | Google Gemini API | ChromaDB | Streamlit\n\n---\n\n## Table of Contents\n\n- [Overview](#overview)\n- [Pipeline Architecture](#pipeline-architecture)\n- [Setup](#setup)\n- [Script-by-Script Guide](#script-by-script-guide)\n- [Querying the System](#querying-the-system)\n- [Streamlit App](#streamlit-app)\n- [Technical Highlights](#technical-highlights)\n- [Edge Cases & Error Handling](#edge-cases--error-handling)\n- [Known Limitations](#known-limitations)\n\n---\n\n## Overview\n\nThis project implements a full RAG pipeline over the seminal \"Attention Is All\nYou Need\" paper. Unlike many RAG demos that handle only text, this system\nprocesses **three distinct modalities** from a single PDF:\n\n| Modality | What is extracted | How it is used |\n|----------|------------------|----------------|\n| **Text** | Section-aware chunks (~700 words) | Semantic search via embedding |\n| **Tables** | Borderless tabular data (4 tables) | Semantic search + displayed as formatted content |\n| **Figures** | Raster images + full-page renders (5 figures) | Text embedding for retrieval; actual image attached at generation time |\n\nAll three are unified into a single vector store, so a single query can retrieve\nevidence across any combination of modalities. The LLM then generates an answer\ngrounded **only** in the retrieved context.\n\n---\n\n## Pipeline Architecture\n\n```\nPDF (\"Attention Is All You Need\")\n\u2502\n\u251c\u2500\u2500\u2500 00_inspect_pdf.py \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 Console output (manual inspection)\n\u2502\n\u251c\u2500\u2500\u2500 01_extract_text.py \u2500\u2500\u2500\u2500\u2500\u2500\u2500 extracted/",
+      "files_read": [
+        {
+          "path": "README.md",
+          "excerpt": "# Multimodal RAG \u2014 \"Attention Is All You Need\"\n\n> A multimodal Retrieval-Augmented Generation system over the Transformer paper.\n> Extracts text, tables, and figures from the PDF, embeds everything with Google\n> Gemini, stores vectors in Chroma DB, and answers questions via grounded\n> generation with figure re-attachment for vision-rich answers.\n\n**Built by Maha Fatima** | [LinkedIn Post](https://www.linkedin.com/posts/activity-7482876699869773824-71mx) | [arXiv:1706.03762](https://arxiv.org/abs/1706.03762) | Google Gemini API | ChromaDB | Streamlit\n\n---\n\n## Table of Contents\n\n- [Overview](#overview)\n- [Pipeline Architecture](#pipeline-architecture)\n- [Setup](#setup)\n- [Script-by-Script Guide](#script-by-script-guide)\n- [Querying the System](#querying-the-system)\n- [Streamlit App](#streamlit-app)\n- [Technical Highlights](#technical-highlights)\n- [Edge Cases & Error Handling](#edge-cases--error-handling)\n- [Known Limitations](#known-limitations)\n\n---\n\n## Overview\n\nThis project implements a full RAG pipeline over the seminal \"Attention Is All\nYou Need\" paper. Unlike many RAG demos that handle only text, this system\nprocesses **three distinct modalities** from a single PDF:\n\n| Modality | What is extracted | How it is used |\n|----------|------------------|----------------|\n| **Text** | Section-aware chunks (~700 words) | Semantic search via embedding |\n| **Tables** | Borderless tabular data (4 tables) | Semantic search + displayed as formatted content |\n| **Figures** | Raster images + full-page renders (5 figures) | Text embedding for retrieval; actual image attached at generation time |\n\nAll three are unified into a single vector store, so a single query can retrieve\nevidence across any combination of modalities. The LLM then generates an answer\ngrounded **only** in the retrieved context.\n\n---\n\n## Pipeline Architecture\n\n```\nPDF (\"Attention Is All You Need\")\n\u2502\n\u251c\u2500\u2500\u2500 00_inspect_pdf.py \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 Console output (manual inspection)\n\u2502\n\u251c\u2500\u2500\u2500 01_extract_text.py \u2500\u2500\u2500\u2500\u2500\u2500\u2500 extracted/"
+        },
+        {
+          "path": "00_inspect_pdf.py",
+          "excerpt": "\"\"\"\n00_inspect_pdf.py - Inspect the \"Attention Is All You Need\" PDF\n\nUsage:\n    python 00_inspect_pdf.py\n\nLearnings:\n    - PyMuPDF (fitz) is a fast PDF library that gives access to text, images,\n      metadata, and more on a per-page basis.\n    - doc.page_count \u2192 total number of pages.\n    - page.get_text() \u2192 extracts all text from a page as a plain string.\n    - page.get_images() \u2192 returns a list of image references embedded on a page.\n\"\"\"\n\nimport fitz  # PyMuPDF \u2013 the leading Python PDF library\n\n# 1. Open the PDF file\npdf_path = \"attention is all you need.pdf\"\ndoc = fitz.open(pdf_path)\n\n# 2. Print the total number of pages\nprint(f\"Total pages: {doc.page_count}\\n\")\n\n# 3. Loop through every page of the document\nfor i, page in enumerate(doc):\n    # --- Text preview -------------------------------------------------\n    text = page.get_text()                     # extract all text on this page\n    # First 100 characters, whitespace collapsed, for a compact preview\n    preview = text.strip()[:100].replace(\"\\n\", \" \")\n\n    # --- Embedded images ----------------------------------------------\n    # get_images(full=True) returns a list of tuples,\n    # one per image reference on the page.\n    images = page.get_images(full=True)\n\n    print(\n        f\"Page {i+1:>2}: \"\n        f\"preview='{preview}...' | \"\n        f\"images={len(images)}\"\n    )\n\n# 4. Clean up \u2013 close the document\ndoc.close()\n"
+        },
+        {
+          "path": "01_extract_text.py",
+          "excerpt": "\"\"\"\n01_extract_text.py \u2014 Extract body text with section metadata from the PDF.\n\nUsage:\n    python 01_extract_text.py\n\nWhat it does:\n    1. Opens the PDF with PyMuPDF.\n    2. Reads text blocks (with bounding-box positions) via page.get_text(\"blocks\").\n    3. Skips headers / footers / page numbers using simple heuristics.\n    4. Detects section headings (numbered patterns, known names).\n    5. Groups body-text blocks under the nearest heading.\n    6. Splits long sections into ~700-word chunks.\n    7. Saves the result to extracted/text_chunks.json.\n\nLearnings:\n    - page.get_text(\"blocks\") returns a list of (x0, y0, x1, y1, text, block_no, block_type)\n      tuples \u2014 much richer than page.get_text() alone.\n    - In PyMuPDF 1.28, \"blocks\" only returns text blocks (type=0); images are\n      retrieved separately via page.get_images().  The tuple is\n      (x0, y0, x1, y1, text, block_no, block_type).\n    - We can use y-coordinates to guess whether a block is a page header/footer.\n    - Section-aware chunking preserves context (each chunk knows what section it belongs to).\n\"\"\"\n\nimport json\nimport os\nimport re\n\nimport fitz\n\n\n# \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n#  Configuration\n# \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nPDF_PATH = \"attention is all you need.pdf\"\nOUTPUT_DIR = \"extracted\"\nOUTPUT_PATH = os.path.join(OUTPUT_DIR, \"text_chunks.json\")\n\n# A section longer than this many words is split into multiple chunks.\nMAX_WORDS_PER_CHUNK = 700\n\n# Blocks shorter than this (in characters) are *candidates* for headings.\nHEADING_MAX_CHARS = 60\n\n# Top / bottom margins (as fraction of page height) used to detect\n# running headers, page numbers, etc.\nTOP_MARGIN_RATIO = 0.08\nBOTTOM_MARGIN_RATIO = 0.06\n\n# \u2500\u2500 Patterns for blocks we want to skip entirely \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n# If any of these substrings appears (case\u2011insensitive) the block is dropped.\nSKIP_PATTERNS = [\n    \"arxiv:\",\n    \"provided proper attribution\",\n    \"google he"
+        }
+      ]
+    },
+    {
+      "name": "flyrank-backend-ai-internship",
+      "full_name": "siedaa/flyrank-backend-ai-internship",
+      "language": "Python",
+      "languages": [
+        "Python",
+        "url"
+      ],
+      "description": " \"Assignments for Flyrank Backend AI Engineering internship track\"",
+      "updated_at": "2026-08-05T20:11:52+00:00",
+      "pushed_at": "2026-08-05T20:10:46+00:00",
+      "stars": 0,
+      "top_repository": true,
+      "recent_commits": [
+        {
+          "message": "Add FastAPI and Uvicorn to requirements",
+          "date": "2026-08-05T20:10:46+00:00"
+        },
+        {
+          "message": "Refactor FastAPI task management code",
+          "date": "2026-08-05T20:10:05+00:00"
+        },
+        {
+          "message": "Add BE-01: minimal Flask server with two JSON endpoints",
+          "date": "2026-07-10T22:05:07+00:00"
+        },
+        {
+          "message": "Initial commit",
+          "date": "2026-07-10T21:53:33+00:00"
+        }
+      ],
+      "readme_excerpt": "# flyrank-backend-ai-internship\n \"Assignments for Flyrank Backend AI Engineering internship track\"\n",
+      "files_read": [
+        {
+          "path": "README.md",
+          "excerpt": "# flyrank-backend-ai-internship\n \"Assignments for Flyrank Backend AI Engineering internship track\"\n"
+        }
+      ]
+    },
+    {
+      "name": "-Lead-Generation-Agent-",
+      "full_name": "siedaa/-Lead-Generation-Agent-",
+      "language": "Python",
+      "languages": [
+        "Python",
+        "url"
+      ],
+      "description": "Build a Lead Generation Agent with Browser Automation and Excel Export",
+      "updated_at": "2026-08-03T16:48:47+00:00",
+      "pushed_at": "2026-08-03T16:47:14+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Add README, clean up debug files",
+          "date": "2026-08-03T16:46:51+00:00"
+        },
+        {
+          "message": "Working end-to-end pipeline: prompt parsing, browser automation scraping, email extraction, Excel export, CLI and Streamlit frontend",
+          "date": "2026-08-03T16:37:07+00:00"
+        },
+        {
+          "message": "Step 7: Excel Extracting by Taking the list of lead dictionaries  and write them into a proper .xlsx",
+          "date": "2026-07-29T21:53:38+00:00"
+        },
+        {
+          "message": "Step 6: Multi-Result Scraping Loop",
+          "date": "2026-07-29T21:40:59+00:00"
+        },
+        {
+          "message": "step 5:  Single-result scraping",
+          "date": "2026-07-29T11:55:43+00:00"
+        },
+        {
+          "message": "Step 4: Search Automation , no data extraction here",
+          "date": "2026-07-26T22:49:09+00:00"
+        },
+        {
+          "message": "Step 3: Browser Automation Smoke Test",
+          "date": "2026-07-26T22:22:35+00:00"
+        },
+        {
+          "message": "step 1 and 2 : prompt-parsing module for extracting business category and location from a natural language request.",
+          "date": "2026-07-26T22:12:51+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "WhatsAPP-chat-Bot",
+      "full_name": "siedaa/WhatsAPP-chat-Bot",
+      "language": "JavaScript",
+      "languages": [
+        "JavaScript",
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2026-07-21T16:56:42+00:00",
+      "pushed_at": "2026-07-21T16:56:18+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Step 6: wire router into WhatsApp bot + fix hobbies schema crash + fix RAG tone/grounding",
+          "date": "2026-07-21T16:56:11+00:00"
+        },
+        {
+          "message": "Step 5: personal-facts memory module with structured extraction",
+          "date": "2026-07-21T11:22:48+00:00"
+        },
+        {
+          "message": "Step 4:adding RAG as it searches a small knowledge base provided by me",
+          "date": "2026-07-20T19:01:35+00:00"
+        },
+        {
+          "message": "Step 3: This step adds conversation memory: each WhatsApp number gets its own running chat history",
+          "date": "2026-07-20T18:14:20+00:00"
+        },
+        {
+          "message": "Step 2: WhatsApp bot with LangChain + Groq AI replies",
+          "date": "2026-07-19T21:22:16+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "siedaa",
+      "full_name": "siedaa/siedaa",
+      "language": null,
+      "languages": [
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2026-07-16T14:47:02+00:00",
+      "pushed_at": "2026-07-16T14:45:25+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Enhance README with project details and tech stack",
+          "date": "2026-07-16T14:45:25+00:00"
+        },
+        {
+          "message": "Revise README with personal and project details",
+          "date": "2026-07-16T14:39:08+00:00"
+        },
+        {
+          "message": "Initial commit",
+          "date": "2026-07-16T14:32:13+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "multimodal-rag-attention-paper",
+      "full_name": "siedaa/multimodal-rag-attention-paper",
+      "language": "Python",
+      "languages": [
+        "Python",
+        "url"
+      ],
+      "description": "Built a multimodal RAG system over \"Attention Is All You Need\" Research Paper",
+      "updated_at": "2026-07-14T20:06:11+00:00",
+      "pushed_at": "2026-07-14T20:05:32+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "update Readme.md",
+          "date": "2026-07-14T20:00:23+00:00"
+        },
+        {
+          "message": "Initial commit: multimodal RAG system over Attention Is All You Need paper",
+          "date": "2026-07-14T19:53:35+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "dsa-color-palette-generator-cpp",
+      "full_name": "siedaa/dsa-color-palette-generator-cpp",
+      "language": "C++",
+      "languages": [
+        "C++",
+        "url"
+      ],
+      "description": " Color Palette Generator built with C++ and SFML demonstrating Arrays, Stacks, Queues, Merge Sort, and Linear Search through an interactive GUI.",
+      "updated_at": "2026-07-13T12:30:50+00:00",
+      "pushed_at": "2026-07-13T12:30:22+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Initial commit:Color Palette Generator",
+          "date": "2026-07-13T12:29:54+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "Rag-chat-bot---aiseason",
+      "full_name": "siedaa/Rag-chat-bot---aiseason",
+      "language": "Python",
+      "languages": [
+        "Python",
+        "url"
+      ],
+      "description": "so this is the rag bot which contains three chunking and two retrieval technique .",
+      "updated_at": "2026-07-10T15:19:39+00:00",
+      "pushed_at": "2026-07-10T15:18:38+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Initial commit: RAG chatbot with LangChain + Groq",
+          "date": "2026-07-10T15:18:24+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "uni-tool",
+      "full_name": "siedaa/uni-tool",
+      "language": "HTML",
+      "languages": [
+        "HTML",
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2026-02-27T21:46:20+00:00",
+      "pushed_at": "2026-02-27T21:46:16+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Add files via upload",
+          "date": "2026-02-27T21:46:16+00:00"
+        },
+        {
+          "message": "Refactor index.html for improved layout and functionality",
+          "date": "2026-02-27T21:45:13+00:00"
+        },
+        {
+          "message": "Update index.html",
+          "date": "2026-02-27T21:30:09+00:00"
+        },
+        {
+          "message": "Enhance UI for Exam Seating Lookup Tool",
+          "date": "2026-02-27T20:57:31+00:00"
+        },
+        {
+          "message": "Add files via upload",
+          "date": "2026-02-27T20:48:46+00:00"
+        },
+        {
+          "message": "Add initial README for uni-tool project",
+          "date": "2026-02-27T20:47:48+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "DataStructure",
+      "full_name": "siedaa/DataStructure",
+      "language": "C++",
+      "languages": [
+        "C++",
+        "url"
+      ],
+      "description": "DataStructures",
+      "updated_at": "2025-11-21T09:38:43+00:00",
+      "pushed_at": "2025-11-21T09:38:39+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Add hash table implementation for employee records",
+          "date": "2025-11-21T09:38:39+00:00"
+        },
+        {
+          "message": "Update q2",
+          "date": "2025-11-21T09:37:26+00:00"
+        },
+        {
+          "message": "Create q4",
+          "date": "2025-11-21T09:36:46+00:00"
+        },
+        {
+          "message": "Create q3",
+          "date": "2025-11-21T09:36:06+00:00"
+        },
+        {
+          "message": "Create q2",
+          "date": "2025-11-21T09:34:14+00:00"
+        },
+        {
+          "message": "Implement hash table with chaining using linked lists",
+          "date": "2025-11-21T09:32:37+00:00"
+        },
+        {
+          "message": "Implement maxHeap class with insertion and removal",
+          "date": "2025-11-20T17:14:04+00:00"
+        },
+        {
+          "message": "Add minHeap class with insertion and removal methods",
+          "date": "2025-11-20T17:13:23+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "COAL-",
+      "full_name": "siedaa/COAL-",
+      "language": null,
+      "languages": [
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2025-09-08T06:34:01+00:00",
+      "pushed_at": "2025-09-08T06:33:58+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Update q2",
+          "date": "2025-09-08T06:33:58+00:00"
+        },
+        {
+          "message": "Create q3",
+          "date": "2025-09-08T06:30:21+00:00"
+        },
+        {
+          "message": "Create q2",
+          "date": "2025-09-08T06:29:56+00:00"
+        },
+        {
+          "message": "Create q1",
+          "date": "2025-09-08T06:29:19+00:00"
+        },
+        {
+          "message": "Initial commit",
+          "date": "2025-09-08T06:28:25+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "-M-and-I-Candy-Pop-Game--OOP-Project.",
+      "full_name": "siedaa/-M-and-I-Candy-Pop-Game--OOP-Project.",
+      "language": "C++",
+      "languages": [
+        "C++",
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2026-07-16T14:43:19+00:00",
+      "pushed_at": "2025-05-12T06:23:12+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Update game.cpp",
+          "date": "2025-05-12T06:23:12+00:00"
+        },
+        {
+          "message": "Update game.cpp",
+          "date": "2025-05-12T06:13:31+00:00"
+        },
+        {
+          "message": "Update game.cpp",
+          "date": "2025-05-12T04:35:13+00:00"
+        },
+        {
+          "message": "Update game.cpp",
+          "date": "2025-05-12T03:36:17+00:00"
+        },
+        {
+          "message": "Update README.md",
+          "date": "2025-05-11T17:29:56+00:00"
+        },
+        {
+          "message": "Add files via upload",
+          "date": "2025-05-11T17:21:46+00:00"
+        },
+        {
+          "message": "Add files via upload",
+          "date": "2025-05-11T17:21:05+00:00"
+        },
+        {
+          "message": "Delete Project-Related/Proposal OOP.docx",
+          "date": "2025-05-11T17:20:32+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "OOP-LAB",
+      "full_name": "siedaa/OOP-LAB",
+      "language": "C++",
+      "languages": [
+        "C++",
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2025-05-11T15:44:48+00:00",
+      "pushed_at": "2025-05-11T15:44:45+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Rename Q6 to Q5",
+          "date": "2025-05-11T15:44:44+00:00"
+        },
+        {
+          "message": "Create Q6",
+          "date": "2025-05-11T15:40:36+00:00"
+        },
+        {
+          "message": "Create q4",
+          "date": "2025-05-11T15:39:52+00:00"
+        },
+        {
+          "message": "Create Q3",
+          "date": "2025-05-11T15:39:10+00:00"
+        },
+        {
+          "message": "Create Q2",
+          "date": "2025-05-11T15:38:29+00:00"
+        },
+        {
+          "message": "Create Q1",
+          "date": "2025-05-11T15:37:05+00:00"
+        },
+        {
+          "message": "Update q5",
+          "date": "2025-05-04T18:53:34+00:00"
+        },
+        {
+          "message": "Update q10",
+          "date": "2025-05-04T18:33:36+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    },
+    {
+      "name": "PF-PROJECT",
+      "full_name": "siedaa/PF-PROJECT",
+      "language": null,
+      "languages": [
+        "url"
+      ],
+      "description": "",
+      "updated_at": "2024-12-03T06:30:27+00:00",
+      "pushed_at": "2024-12-03T06:30:23+00:00",
+      "stars": 0,
+      "top_repository": false,
+      "recent_commits": [
+        {
+          "message": "Update pf project :",
+          "date": "2024-12-03T06:30:23+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-12-03T05:12:45+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-12-03T04:59:44+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-12-03T04:54:30+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-12-03T04:20:17+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-12-03T04:18:35+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-11-30T06:43:09+00:00"
+        },
+        {
+          "message": "Update pf project :",
+          "date": "2024-11-27T11:26:53+00:00"
+        }
+      ],
+      "readme_excerpt": null,
+      "files_read": []
+    }
+  ]
+}

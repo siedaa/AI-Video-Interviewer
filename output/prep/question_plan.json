@@ -1,0 +1,162 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Can you describe a Retrieval\u2011Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "competency": "Technical depth",
+      "source": "jd",
+      "source_reference": "",
+      "difficulty": "medium",
+      "follow_up_triggers": [
+        "mentions vector store",
+        "unclear on chunking strategy",
+        "talks about latency"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "Your resume says you built a multimodal image\u2011relevance service for FlyRank. What modalities did you support and how did you combine them to compute relevance?",
+      "competency": "Technical depth",
+      "source": "resume",
+      "source_reference": "",
+      "difficulty": "hard",
+      "follow_up_triggers": [
+        "mentions embeddings",
+        "uses custom similarity metric",
+        "skips preprocessing details"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "In the\u202fflyrank\u2011capstone\u2011image\u2011relevance\u202frepo you added a design doc, ORM models, and an image\u2011tagging schema. Walk me through how you structured the database schema and why you chose those tables/relationships.",
+      "competency": "Problem decomposition",
+      "source": "github",
+      "source_reference": "repo:siedaa/flyrank-capstone-image-relevance",
+      "difficulty": "medium",
+      "follow_up_triggers": [
+        "mentions ORM guard rule",
+        "unclear on foreign keys",
+        "talks about indexing strategy"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Imagine a FastAPI endpoint that should return image relevance scores but is returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix the issue?",
+      "competency": "Debugging",
+      "source": "scenario",
+      "source_reference": "",
+      "difficulty": "easy",
+      "follow_up_triggers": [
+        "skips log inspection",
+        "does not mention unit tests",
+        "focuses only on code changes"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "In your AI\u2011red\u2011teaming\u2011toolkit repo, the\u202f01_extract_text.py\u202fscript splits sections into ~700\u2011word chunks. Why did you pick that chunk size and how does it affect downstream retrieval?",
+      "competency": "Technical depth",
+      "source": "github",
+      "source_reference": "repo:siedaa/AI-red-teaming-toolkit-for-RAG-chatbot-security",
+      "difficulty": "medium",
+      "follow_up_triggers": [
+        "mentions token limits",
+        "talks about context window",
+        "ignores overlap handling"
+      ]
+    },
+    {
+      "id": "q6",
+      "text": "You claim to have implemented unit tests for the backend services. Which testing framework did you use, and can you give an example of a critical test case you wrote?",
+      "competency": "Shipping ability",
+      "source": "resume",
+      "source_reference": "",
+      "difficulty": "easy",
+      "follow_up_triggers": [
+        "mentions pytest fixtures",
+        "covers edge cases",
+        "omits integration testing"
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "Suppose you need to ship the Lead Generation Agent to a small business next month. How would you prioritize features and decide what to cut if time becomes limited?",
+      "competency": "Shipping ability",
+      "source": "scenario",
+      "source_reference": "",
+      "difficulty": "medium",
+      "follow_up_triggers": [
+        "focuses on MVP",
+        "mentions stakeholder feedback",
+        "overlooks compliance"
+      ]
+    },
+    {
+      "id": "q8",
+      "text": "The commit titled\u202f\"Phase 1: organize and verify image dataset\"\u202fwas made on 2026\u201108\u201112. What verification steps did you implement to ensure dataset quality before training?",
+      "competency": "Debugging",
+      "source": "github",
+      "source_reference": "commit:Phase 1: organize and verify image dataset",
+      "difficulty": "hard",
+      "follow_up_triggers": [
+        "mentions checksum validation",
+        "talks about label consistency",
+        "skips handling corrupted files"
+      ]
+    },
+    {
+      "id": "q9",
+      "text": "Describe your workflow for using Git when collaborating on a shared codebase. How do you handle code reviews and merge conflicts?",
+      "competency": "Communication",
+      "source": "jd",
+      "source_reference": "",
+      "difficulty": "easy",
+      "follow_up_triggers": [
+        "mentions feature branches",
+        "avoids rebasing",
+        "does not discuss CI"
+      ]
+    },
+    {
+      "id": "q10",
+      "text": "Your resume notes that you integrated REST APIs for the image\u2011relevance service. What authentication method did you choose and why?",
+      "competency": "Technical depth",
+      "source": "resume",
+      "source_reference": "",
+      "difficulty": "medium",
+      "follow_up_triggers": [
+        "mentions OAuth2",
+        "uses API keys",
+        "ignores token expiration"
+      ]
+    },
+    {
+      "id": "q11",
+      "text": "Explain the concept of Retrieval\u2011Augmented Generation to a product manager who is not technical. How would you convey its value in plain language?",
+      "competency": "Communication",
+      "source": "scenario",
+      "source_reference": "",
+      "difficulty": "easy",
+      "follow_up_triggers": [
+        "uses analogies",
+        "focuses on latency benefits",
+        "omits risk discussion"
+      ]
+    },
+    {
+      "id": "q12",
+      "text": "The commit\u202f\"Working end\u2011to\u2011end pipeline: prompt parsing, browser automation scraping, email extraction, Excel export, CLI and Streamlit frontend\"\u202fshows a complex workflow. Break down the pipeline into its major components and discuss the most challenging integration point you faced.",
+      "competency": "Problem decomposition",
+      "source": "github",
+      "source_reference": "commit:Working end-to-end pipeline: prompt parsing, browser automation scraping, email extraction, Excel export, CLI and Streamlit frontend",
+      "difficulty": "hard",
+      "follow_up_triggers": [
+        "mentions Selenium stability",
+        "talks about data format mismatches",
+        "highlights rate\u2011limit handling"
+      ]
+    }
+  ],
+  "approved_by_human": false,
+  "edits_made": []
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Sieda Khan",
+  "roles": [
+    {
+      "title": "Backend AI Intern",
+      "company": "FlyRank",
+      "years": "2025-2026",
+      "description": "Built a multimodal image-relevance service and an AI internship backend in FastAPI. Wrote unit tests and integrated REST APIs."
+    }
+  ],
+  "claims": [
+    "Built a multimodal image-relevance service for FlyRank.",
+    "Developed an AI internship backend using FastAPI.",
+    "Implemented unit tests for backend services.",
+    "Integrated REST APIs for the image-relevance service.",
+    "Shipped a lead-generation agent for enterprise search.",
+    "Created a retrieval-augmented generation (RAG) chatbot for enterprise search.",
+    "Specialized in building retrieval-augmented generation systems in Python."
+  ],
+  "skills": [
+    "Python",
+    "FastAPI",
+    "LangChain",
+    "LangGraph",
+    "RAG",
+    "embeddings",
+    "Git",
+    "REST APIs",
+    "vector search",
+    "evaluation"
+  ],
+  "github_url": "https://github.com/siedaa",
+  "linkedin_url": "https://www.linkedin.com/in/sieda-khan"
+}

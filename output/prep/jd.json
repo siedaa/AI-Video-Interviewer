@@ -1,0 +1,20 @@
+{
+  "role": "Junior AI Engineer",
+  "seniority": "Junior",
+  "company": "Northwind Labs",
+  "location": "Karachi",
+  "must_have_skills": [
+    "Python",
+    "LangChain or LangGraph",
+    "Retrieval-augmented generation (RAG)",
+    "Git",
+    "REST APIs"
+  ],
+  "competencies": [
+    "Technical depth",
+    "Problem decomposition",
+    "Shipping ability",
+    "Debugging",
+    "Communication"
+  ]
+}
