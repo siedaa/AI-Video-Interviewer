@@ -134,9 +134,7 @@ Work through these **in order**. Each phase has a goal, what "done" looks like, 
 |---|---|---|
 | 0 — Scaffolding | In progress | Repo skeleton, `.venv`, verify_keys.py in place; all 4 key checks pass (Gemini/Groq/GitHub/LiveKit OK). Awaiting user's own run of verify_keys.py. |
 | 1 — Prep pipeline | In progress | src/schemas.py, jd_parser, resume_parser, github_agent, question_planner, run_prep.py written. Ran end-to-end on test inputs: 12 questions / 4 github-grounded with verified repo/file/commit refs. Stopping for user to test run_prep.py. |
-| 2 — LangGraph + HITL | In progress | src/graph.py (5 nodes + 2 conditional edges + SqliteSaver on checkpoint.db), run_graph.py CLI with approve/edit/reject. Tested approve, edit->reapprove, reject, github-override interrupt, and crash-resume. Awaiting user test. |
-| 1 — Prep pipeline | Not started | |
-| 2 — LangGraph + HITL | Not started | |
+| 2 — LangGraph + HITL | In progress | src/graph.py (6 nodes + 2 conditional edges incl. missing-GitHub branch + SqliteSaver on checkpoint.db, msgpack allowlist for schemas), run_graph.py CLI with approve/edit/reject. Tested approve, edit->reapprove, reject, github-override interrupt, and crash-resume; resume bug fixed (Command(resume=...) instead of re-invoking initial input). Awaiting user re-test after fix. |
 | 3 — Guardrails | Not started | |
 | 4 — Realtime voice | Not started | |
 | 5 — Avatar | Not started | |
