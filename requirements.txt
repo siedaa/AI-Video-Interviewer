@@ -7,4 +7,5 @@ livekit-plugins-google
 pdfplumber
 fastmcp
 langgraph
+langgraph-checkpoint-sqlite
 reportlab
