@@ -1,12 +1,13 @@
 """Pydantic schemas copied verbatim from FirstRound-Final-Test.pdf §6.
 
 Extra fields are allowed by the grader; missing fields are not. We mirror the
-spec exactly and keep the field sets deliberately minimal.
+spec exactly and keep the field sets deliberately minimal. GraphState extends
+the schema set with the LangGraph runtime state (not part of the graded files).
 """
 
 from __future__ import annotations
 
-from typing import List, Literal, Optional
+from typing import List, Literal, Optional, TypedDict
 
 from pydantic import BaseModel, Field
 
@@ -134,3 +135,44 @@ class Scorecard(BaseModel):
     concerns: List[str] = Field(default_factory=list)
     guardrail_flags: List[str] = Field(default_factory=list)
     github_grounded_questions_asked: int = 0
+
+
+# ---------------------------------------------------------------------------
+# LangGraph runtime state (Phase 2, not part of the graded output files)
+# ---------------------------------------------------------------------------
+class ApprovalEdit(BaseModel):
+    """A single recruiter edit applied to the question plan."""
+
+    question_id: str = ""
+    field: str = ""
+    old_value: str = ""
+    new_value: str = ""
+    timestamp: str = ""
+
+
+class GraphState(TypedDict, total=False):
+    """State flowing through the FirstRound LangGraph (Phase 2+).
+
+    TypedDict (not a Pydantic model) so LangGraph can apply its update /
+    reducer semantics out of the box. All fields optional so partial inputs
+    are valid.
+
+    Fields:
+      inputs        - raw file paths (jd, resume) handed to the graph
+      jd            - JDInfo model as parsed by parse_jd
+      resume        - ResumeInfo model as parsed by parse_resume
+      github_findings - GithubInfo model from github_agent
+      question_plan - QuestionPlan model from question_planner
+      thread_id     - stable id keying the checkpointer / resumability
+      approval_status - "pending" until the recruiter decides (Phase 2 HITL)
+      edits_made    - list of recruiter edits (see ApprovalEdit)
+    """
+
+    inputs: dict[str, str]
+    jd: JDInfo
+    resume: ResumeInfo
+    github_findings: GithubInfo
+    question_plan: QuestionPlan
+    thread_id: str
+    approval_status: Literal["pending", "approved", "edited", "rejected"]
+    edits_made: List[ApprovalEdit]
