@@ -9,4 +9,7 @@ venv/
 output/*.json
 output/*.pdf
 
+checkpoint.db
+*.db
+
 *.log
