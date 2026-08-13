@@ -28,6 +28,8 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(Path(ROOT, ".env"))
 
+os.environ.pop("GEMINI_API_KEY", None)
+
 from google.genai import types  # noqa: E402
 
 from livekit import agents  # noqa: E402
@@ -36,8 +38,9 @@ from livekit.plugins import google  # noqa: E402
 
 from src.schemas import QuestionPlan, ResumeInfo  # noqa: E402
 
+PINNED_GEMINI_LIVE_MODEL = "gemini-2.5-flash-native-audio-preview-12-2025"
 GEMINI_REALTIME_MODEL = os.environ.get(
-    "FIRSTROUND_GEMINI_MODEL", "gemini-2.5-flash-native-audio-preview"
+    "FIRSTROUND_GEMINI_MODEL", PINNED_GEMINI_LIVE_MODEL
 )
 QUESTION_PLAN_PATH = Path(
     os.environ.get("FIRSTROUND_QUESTION_PLAN", ROOT / "output" / "prep" / "question_plan.json")
