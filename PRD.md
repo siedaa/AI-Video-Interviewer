@@ -136,7 +136,7 @@ Work through these **in order**. Each phase has a goal, what "done" looks like, 
 | 1 — Prep pipeline | In progress | src/schemas.py, jd_parser, resume_parser, github_agent, question_planner, run_prep.py written. Ran end-to-end on test inputs: 12 questions / 4 github-grounded with verified repo/file/commit refs. Stopping for user to test run_prep.py. |
 | 2 — LangGraph + HITL | In progress | src/graph.py (6 nodes + 2 conditional edges incl. missing-GitHub branch + SqliteSaver on checkpoint.db, msgpack allowlist for schemas), run_graph.py CLI with approve/edit/reject. Tested approve, edit->reapprove, reject, github-override interrupt, and crash-resume; resume bug fixed (Command(resume=...) instead of re-invoking initial input). Awaiting user re-test after fix. |
 | 3 — Guardrails | Not started | |
-| 4 — Realtime voice | Not started | |
+| 4 — Realtime voice | In progress | agent.py joins room + greets candidate by name via Gemini Live (4a); join page + token helper dockerized (4b); per-turn transcript.json logging w/ interrupted flag landed and user-verified end-to-end (4c). Remaining: interrupt-latency measurement (~1s target, per exit criteria) then avatar wiring. |
 | 5 — Avatar | Not started | |
 | 6 — Scoring + MCP | Not started | |
 | 7 — Evals | Not started | |
