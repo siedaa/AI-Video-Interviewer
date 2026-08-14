@@ -1,0 +1,1 @@
+"""FirstRound MCP server package."""
