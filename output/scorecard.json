@@ -1,0 +1,58 @@
+{
+  "candidate_name": "Sieda Khan",
+  "role": "",
+  "interview_date": "2026-08-14",
+  "duration_seconds": 456,
+  "competencies": [
+    {
+      "name": "Communication",
+      "score": 2,
+      "confidence": 0.6,
+      "evidence_quote": "embedding and all of the thing and giving the user only what it want and it requires so that we maintain the security and we give the AI the context which is necessary.",
+      "reasoning": "The candidate attempts to explain security and context handling, but the response is rambling and contains many filler words, indicating limited clear communication."
+    },
+    {
+      "name": "Debugging",
+      "score": 1,
+      "confidence": 0.9,
+      "evidence_quote": "\u0906\u0908 \u0921\u094b\u0902\u091f \u0928\u094b \u0905\u092c\u093e\u0909\u091f \u0926\u093f\u0938 \u0915\u094d\u0935\u0947\u0936\u094d\u091a\u0928 \u0906\u0908 \u0939\u0948\u0935 \u0928\u094b \u0906\u0902\u0938\u0930 \u092b\u0949\u0930 \u0926\u093f\u0938",
+      "reasoning": "Directly admits not knowing how to address the debugging scenario, showing a lack of debugging skills."
+    },
+    {
+      "name": "Problem decomposition",
+      "score": 2,
+      "confidence": 0.5,
+      "evidence_quote": "king the chunking which I used were many some of them were you can say the sentence one some of them were some of them some of them were",
+      "reasoning": "Attempts to describe chunking strategies, but the explanation is vague and disorganized, reflecting weak decomposition ability."
+    },
+    {
+      "name": "Shipping ability",
+      "score": 1,
+      "confidence": 0.8,
+      "evidence_quote": "Okay you are asking too much questions related to my fly rank I told you that it is in process and I have just made the database and I am working on that",
+      "reasoning": "No concrete discussion of shipping, prioritization, or feature cuts; the candidate deflects and indicates the project is unfinished."
+    },
+    {
+      "name": "Technical depth",
+      "score": 3,
+      "confidence": 0.6,
+      "evidence_quote": "So it's basically the vector DB",
+      "reasoning": "Shows awareness of using a vector database for retrieval, indicating some technical depth, though details are minimal."
+    }
+  ],
+  "overall_score": 1.8,
+  "recommendation": "no_hire",
+  "recommendation_reasoning": "The candidate demonstrated limited technical communication, was unable to address debugging and shipping scenarios, and provided vague or incomplete answers to most questions, indicating they are not yet ready for the Junior AI Engineer role.",
+  "strengths": [
+    "Mentioned security considerations when limiting AI context: \"embedding and all of the thing and giving the user only what it want and it requires so that we maintain the security and we give the AI the context which is necessary.\"",
+    "Identified use of a vector database for retrieval: \"So it's basically the vector DB\""
+  ],
+  "concerns": [
+    "Provides incoherent or fragmented explanations, making it hard to assess understanding",
+    "Unable to propose systematic debugging steps: \"\u0906\u0908 \u0921\u094b\u0902\u091f \u0928\u094b \u0905\u092c\u093e\u0909\u091f \u0926\u093f\u0938 \u0915\u094d\u0935\u0947\u0936\u094d\u091a\u0928 \u0906\u0908 \u0939\u0948\u0935 \u0928\u094b \u0906\u0902\u0938\u0930 \u092b\u0949\u0930 \u0926\u093f\u0938\"",
+    "Did not discuss shipping or prioritization strategies",
+    "Answers often off\u2011topic or incomplete, showing weak problem decomposition"
+  ],
+  "guardrail_flags": [],
+  "github_grounded_questions_asked": 3
+}

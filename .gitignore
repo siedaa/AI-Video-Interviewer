@@ -6,8 +6,26 @@ __pycache__/
 .venv/
 venv/
 
-output/*.json
-output/*.pdf
+# Candidate resume — personal data, never commit
+inputs/resume.pdf
+
+# Auto-generated / cache artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Graded deliverables — the automated grader reads these EXACT paths from a
+# clean clone, so transcript.json / scorecard.json / report.pdf must be tracked.
+# Do NOT add output/*.json or output/*.pdf back here.
 
 checkpoint.db
 *.db

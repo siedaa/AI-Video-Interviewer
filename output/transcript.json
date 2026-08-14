@@ -1,0 +1,242 @@
+{
+  "turns": [
+    {
+      "speaker": "agent",
+      "text": "Hello Sieda Khan, it's a pleasure to meet you. I'm FirstRound, an AI interviewer for Northwind Labs. This interview will take about 8-10 minutes, where we'll discuss your background, dive into some of your projects, and walk through a few scenarios to assess your fit for the",
+      "timestamp_ms": 1786719258025,
+      "node": "intro",
+      "interrupted": true
+    },
+    {
+      "speaker": "candidate",
+      "text": "Hello, please tell me my name again.",
+      "timestamp_ms": 1786719282855,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Your name is Sieda Khan. As I was saying, the interview will cover your background, projects, and scenarios. We'll also",
+      "timestamp_ms": 1786719275693,
+      "node": "jd_fit",
+      "interrupted": true
+    },
+    {
+      "speaker": "candidate",
+      "text": "व्हाट वाज माय गिव यू आर एल",
+      "timestamp_ms": 1786719297858,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Your GitHub URL is https://github.com/siedaa. Now, to jump back into the interview, can you describe a Retrieval-Augmented Generation (RAG) system you have built and the",
+      "timestamp_ms": 1786719287077,
+      "node": "scenario",
+      "interrupted": true
+    },
+    {
+      "speaker": "candidate",
+      "text": "ఓకే ప్లీజ్ కంటిన్యూ",
+      "timestamp_ms": 1786719307501,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Can you describe a Retrieval-Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "timestamp_ms": 1786719300130,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "ऑलराइट सो राइग इज बेसिकली द रिटर्न",
+      "timestamp_ms": 1786719326769,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "अब मेंटेबल ऑफ मेंटेड एंड हियर आई चैट बिकॉज़ टू प्रोटेक्ट माय सिस्टम टू प्रोटेक्ट द चैट बोट बिकॉज़ दे आर मेनी एआई सिक्योरिटी व्हिच वी नीड टू कीप इन चेक एंड वी नीड टू गिव द एआई इन स्पेसिफिक पार्ट ओनली व्हिच द यूजर इज आस्किंग सो वी आर डूइंग द",
+      "timestamp_ms": 1786719348082,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "embedding and all of the thing and giving the user only what it want and it requires so that we maintain the security and we give the AI the context which is necessary.",
+      "timestamp_ms": 1786719368911,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "That makes sense from a security and context perspective. Could you elaborate on the specific vector store you selected and the chunking strategy you implemented",
+      "timestamp_ms": 1786719360113,
+      "node": "scenario",
+      "interrupted": true
+    },
+    {
+      "speaker": "candidate",
+      "text": "<noise>",
+      "timestamp_ms": 1786719374752,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "I think you were about to say something. Please continue.",
+      "timestamp_ms": 1786719371841,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "So it's basically the vector DB",
+      "timestamp_ms": 1786719381466,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Okay yes so it is basically a vector DB and and",
+      "timestamp_ms": 1786719388494,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "king the chunking which I used were many some of them were you can say the sentence one some of them were some of them some of them were",
+      "timestamp_ms": 1786719402916,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "tokens one",
+      "timestamp_ms": 1786719404772,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "the word one the topic one so there were many which I tried in that.",
+      "timestamp_ms": 1786719423306,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "That's a comprehensive approach. Your resume notes you built a multimodal image-relevance service for FlyRank. What modalities did you support and how did you combine them to compute relevance?",
+      "timestamp_ms": 1786719411482,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "वेल दैट प्रोजेक्ट इज नॉट कंप्लीटेड हियर आई एम स्टिल वर्किंग ऑन इट बट बेसिकली इट वर्क्स हाउ इट वर्क्स",
+      "timestamp_ms": 1786719442024,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "basically we have a doctor through which I am acting the post gray SQL and so that I can maintain the database which I want for the",
+      "timestamp_ms": 1786719473513,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "image because they will do 50 images I have made the proper database for the 50 images things.",
+      "timestamp_ms": 1786719473788,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "I understand. In your",
+      "timestamp_ms": 1786719464794,
+      "node": "resume_probe",
+      "interrupted": true
+    },
+    {
+      "speaker": "candidate",
+      "text": "the relevant picture it should give the relevant output relevant command where the picture is connected and it is relevant to that particular",
+      "timestamp_ms": 1786719487834,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In your",
+      "timestamp_ms": 1786719485748,
+      "node": "resume_probe",
+      "interrupted": true
+    },
+    {
+      "speaker": "candidate",
+      "text": "blog or not so that is the main scenario and yeah",
+      "timestamp_ms": 1786719509073,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In your `flyrank-capstone-image-relevance` repo, you added a design doc, ORM models, and an image-tagging schema. Walk me through how you structured the database schema and why you chose those tables and relationships.",
+      "timestamp_ms": 1786719496146,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Okay so basically those relationships and the tables were required so that we can",
+      "timestamp_ms": 1786719540131,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "the images you can identify so that the Gemini LM vision VLM vision which is going to identify the image can identify easily that is why we chose that database structure and we have the particular topic in it and all of the other things which were necessary to store in a database so that later when any image comes the model when it is comparing it it should have all the details relevant details to give us the required answer for it.",
+      "timestamp_ms": 1786719580188,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "When structuring the schema, did you utilize any ORM guard rules or consider specific foreign keys to manage those relationships effectively?",
+      "timestamp_ms": 1786719571469,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Okay you are asking too much questions related to my fly rank I told you that it is in process and I have just made the database and I am working on that I have just made two steps of that it is a long project and still there are a lot of things which I have to work on on that. So can we move forward with some another question please",
+      "timestamp_ms": 1786719645336,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "I understand, thank you for clarifying the project status. Let's move on. Imagine a FastAPI endpoint that should return image relevance scores but is currently returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix the issue?",
+      "timestamp_ms": 1786719627564,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "आई डोंट नो अबाउट दिस क्वेश्चन आई हैव नो आंसर फॉर दिस",
+      "timestamp_ms": 1786719714041,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "No problem. In your `AI-red-teaming-toolkit-for-RAG-chatbot-security` repo, the `01_extract_text.py` script splits sections into roughly 700-word chunks. Why did you pick that specific chunk size and how does it affect downstream retrieval?",
+      "timestamp_ms": 1786719704234,
+      "node": "resume_probe",
+      "interrupted": false
+    }
+  ]
+}
