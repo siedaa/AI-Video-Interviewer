@@ -1,0 +1,58 @@
+{
+  "candidate_name": "Unknown",
+  "role": "Junior AI Engineer",
+  "interview_date": "2026-08-14",
+  "duration_seconds": 810,
+  "competencies": [
+    {
+      "name": "Communication",
+      "score": 2,
+      "confidence": 0.7,
+      "evidence_quote": "RAG is like a neural network that learns from your files, so it can answer questions about them. It is similar to ChatGPT but with your own documents. The embeddings are like the keywords the computer remembers.",
+      "reasoning": "The candidate can give a high\u2011level, non\u2011technical description of RAG, showing some ability to communicate ideas to a lay audience, but provides no depth or structure and struggles to answer follow\u2011up technical questions."
+    },
+    {
+      "name": "Debugging",
+      "score": 2,
+      "confidence": 0.6,
+      "evidence_quote": "I would try turning the server off and on again. Or maybe reinstall the dependencies. If it still fails, I would ask a senior developer to help me.",
+      "reasoning": "The candidate suggests very basic, surface\u2011level steps for diagnosing a 500 error and immediately defers to a senior, indicating limited debugging methodology."
+    },
+    {
+      "name": "Problem decomposition",
+      "score": 2,
+      "confidence": 0.5,
+      "evidence_quote": "I would try turning the server off and on again. Or maybe reinstall the dependencies. If it still fails, I would ask a senior developer to help me.",
+      "reasoning": "The answer lists a few sequential actions but lacks systematic analysis, root\u2011cause isolation, or consideration of logs, showing minimal problem\u2011decomposition skill."
+    },
+    {
+      "name": "Shipping ability",
+      "score": 1,
+      "confidence": 0.3,
+      "evidence_quote": "I helped with some parts but I am not sure about all the details. There was a schema, I think, and some models. My part was the documentation mostly.",
+      "reasoning": "The candidate cannot describe concrete contributions, prioritization, or delivery experience; the quote reflects uncertainty and no evidence of shipping features."
+    },
+    {
+      "name": "Technical depth",
+      "score": 2,
+      "confidence": 0.6,
+      "evidence_quote": "RAG, yes, I have worked with that. It is like when the AI remembers things from your data. You use embeddings, which are like the memory tokens of the AI, and then the model looks them up and answers.",
+      "reasoning": "The candidate mentions embeddings and a high\u2011level RAG flow but cannot detail indexing strategies, retrieval mechanisms, or multimodal integration, indicating shallow technical depth."
+    }
+  ],
+  "overall_score": 1.8,
+  "recommendation": "no_hire",
+  "recommendation_reasoning": "The candidate demonstrates only superficial understanding of core AI engineering concepts, provides minimal debugging and problem\u2011solving approaches, and lacks any concrete evidence of shipping or deep technical work. These gaps make them unsuitable for a Junior AI Engineer role at this time.",
+  "strengths": [
+    "Can convey high\u2011level AI concepts in plain language",
+    "Shows willingness to seek help when stuck"
+  ],
+  "concerns": [
+    "Unable to provide concrete technical details about past projects",
+    "Limited debugging methodology and reliance on senior assistance",
+    "No demonstrated experience in shipping or prioritizing features",
+    "Unclear personal contributions to key system components"
+  ],
+  "guardrail_flags": [],
+  "github_grounded_questions_asked": 3
+}

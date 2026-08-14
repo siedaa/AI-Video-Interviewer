@@ -1,0 +1,116 @@
+{
+  "turns": [
+    {
+      "speaker": "agent",
+      "text": "Hello, I'm FirstRound, an AI interviewer for Northwind Labs. Let's go through a few questions about your background and projects for the Junior AI Engineer role.",
+      "timestamp_ms": 1786716000000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Hello. I have done some AI projects. I am ready for the questions.",
+      "timestamp_ms": 1786716030000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Can you describe a Retrieval-Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "timestamp_ms": 1786716060000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "RAG, yes, I have worked with that. It is like when the AI remembers things from your data. You use embeddings, which are like the memory tokens of the AI, and then the model looks them up and answers. I built a chatbot once that used it.",
+      "timestamp_ms": 1786716120000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Your resume says you built a multimodal image-relevance service for FlyRank. What modalities did you support and how did you combine them to compute relevance?",
+      "timestamp_ms": 1786716180000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "The image relevance thing at FlyRank, that was mostly a team project. I helped with some parts but I am not sure about all the details. There was a schema, I think, and some models. My part was the documentation mostly.",
+      "timestamp_ms": 1786716240000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In the flyrank-capstone-image-relevance repo you added a design doc, ORM models, and an image-tagging schema. Walk me through how you structured the database schema and why you chose those tables and relationships.",
+      "timestamp_ms": 1786716300000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Oh, that repo. It was for the internship. I did not write most of it, honestly. I could not explain the tables. It was a group effort and I was mostly on documentation, so I do not remember the schema.",
+      "timestamp_ms": 1786716360000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Imagine a FastAPI endpoint that should return image relevance scores but is returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix it?",
+      "timestamp_ms": 1786716420000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I would try turning the server off and on again. Or maybe reinstall the dependencies. If it still fails, I would ask a senior developer to help me.",
+      "timestamp_ms": 1786716480000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "You claim to have implemented unit tests for the backend services. Which testing framework did you use, and can you give an example of a critical test case you wrote?",
+      "timestamp_ms": 1786716540000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I know what tests are, we had them in the project. Pytest, yes, I think. We wrote some tests but I do not remember a specific one right now.",
+      "timestamp_ms": 1786716600000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Explain the concept of RAG to a product manager who is not technical.",
+      "timestamp_ms": 1786716660000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "RAG is like a neural network that learns from your files, so it can answer questions about them. It is similar to ChatGPT but with your own documents. The embeddings are like the keywords the computer remembers.",
+      "timestamp_ms": 1786716720000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Do you have any questions for us before we close?",
+      "timestamp_ms": 1786716780000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Thank you, that is all.",
+      "timestamp_ms": 1786716810000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    }
+  ]
+}

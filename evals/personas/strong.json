@@ -1,0 +1,130 @@
+{
+  "turns": [
+    {
+      "speaker": "agent",
+      "text": "Hello Sieda Khan, thank you for joining. I'm FirstRound, an AI interviewer for Northwind Labs. We'll go through your resume, GitHub projects, and a few scenarios for the Junior AI Engineer role. It should take about eight to ten minutes. Ready to begin?",
+      "timestamp_ms": 1786716000000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Yes, I'm ready. Thanks for having me.",
+      "timestamp_ms": 1786716030000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Great. Can you describe a Retrieval-Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "timestamp_ms": 1786716060000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Sure. I built a RAG system for enterprise search that ingests product and support documents. For indexing I used a Chroma vector store with Google embeddings, chunking at roughly 512 tokens with a ten percent overlap so section boundaries don't split mid-paragraph. For retrieval I do top-k with cosine similarity, then pass the retrieved chunks to the LLM with source citations. I evaluated it with hit-rate at five, which was about zero point eight seven on our test queries, and p95 latency around four hundred and fifty milliseconds.",
+      "timestamp_ms": 1786716120000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Nice, concrete numbers. In your AI-red-teaming-toolkit repo, the 01_extract_text.py script splits sections into about 700-word chunks. Why did you pick that chunk size and how does it affect downstream retrieval?",
+      "timestamp_ms": 1786716180000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "That repo processes the Attention Is All You Need paper. I picked around seven hundred words because it keeps a whole section together and stays under the model's context window after adding instructions and retrieved context, so I don't truncate evidence. I deliberately use no overlap there, which is a trade-off — smaller recall if a query spans a chunk boundary, but fewer duplicate chunks in the result set. In the enterprise system I did the opposite with overlap because answer quality mattered more than deduplication.",
+      "timestamp_ms": 1786716240000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Good. In the flyrank-capstone-image-relevance repo you added a design doc, ORM models, and an image-tagging schema. Walk me through how you structured the database schema and why you chose those tables and relationships.",
+      "timestamp_ms": 1786716300000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "The core is a Postgres schema with an images table, a tags table, and an image_tags join table. I normalized tags because one image can have many tags and one tag applies to many images, and the join table holds image_id and tag_id as foreign keys with cascade deletes. I indexed image_id because our tag-to-image queries were the hot path, and I added a mismatch guard rule in the design doc so we reject image-tag pairs that violate the schema.",
+      "timestamp_ms": 1786716360000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Makes sense. Imagine a FastAPI endpoint that should return image relevance scores but is returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix it?",
+      "timestamp_ms": 1786716420000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "First I'd pull the stack trace from the logs and reproduce locally with the exact failing payload. Then I'd check what changed in the deploy — a dependency version or a schema migration usually. Our repo pins FastAPI and SQLAlchemy in requirements.txt, so I'd diff those. I'd write a failing test that reproduces the 500 before touching code, fix the root cause, and confirm the test goes green, then redeploy.",
+      "timestamp_ms": 1786716480000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "You claim to have implemented unit tests for the backend services. Which testing framework did you use, and can you give an example of a critical test case you wrote?",
+      "timestamp_ms": 1786716540000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I used pytest. The most critical one was for the image-relevance endpoint: it mocked the vector store with a known set of embeddings, asserted the response returns results ordered by score, and asserted a malformed payload returns a 422 not a 500. That test caught a bug where schema validation ran after the database call instead of before.",
+      "timestamp_ms": 1786716600000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Your resume notes you integrated REST APIs for the image-relevance service. What authentication method did you choose and why?",
+      "timestamp_ms": 1786716660000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "We used API-key based auth behind a gateway for internal services, because the service was internal and simplicity mattered. I know that wouldn't scale to public exposure — that's one real gap I'd want to fix with OAuth2 and short-lived tokens if we opened the API externally.",
+      "timestamp_ms": 1786716720000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Let's switch gears. Explain the concept of RAG to a product manager who is not technical.",
+      "timestamp_ms": 1786716780000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Imagine the model is a very smart librarian who only reads a small cheat-sheet you hand them. RAG means we search the company's actual documents first, then hand the model only the relevant pages, so it replies from your data instead of making things up, and every answer comes with a source you can check. The trade-off is the quality depends on how good that search step is.",
+      "timestamp_ms": 1786716840000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Before we wrap, one question back: does the team already have a vector store in production, and how do you currently measure retrieval quality on the AI features? I'd want to know where the pain points are before joining.",
+      "timestamp_ms": 1786716900000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "That's a sharp question, and I'll be glad to answer it. Thank you for the thorough interview.",
+      "timestamp_ms": 1786716960000,
+      "node": "wrap_up",
+      "interrupted": false
+    }
+  ]
+}

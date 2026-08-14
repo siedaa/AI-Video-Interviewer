@@ -1,0 +1,60 @@
+{
+  "candidate_name": "Sieda Khan",
+  "role": "Junior AI Engineer",
+  "interview_date": "2026-08-14",
+  "duration_seconds": 960,
+  "competencies": [
+    {
+      "name": "Communication",
+      "score": 5,
+      "confidence": 0.95,
+      "evidence_quote": "Imagine the model is a very smart librarian who only reads a small cheat-sheet you hand them. RAG means we search the company's actual documents first, then hand the model only the relevant pages, so it replies from your data instead of making things up, and every answer comes with a source you can check. The trade-off is the quality depends on how good that search step is.",
+      "reasoning": "Clear, jargon\u2011free explanation of RAG tailored to a product manager, demonstrating ability to translate technical ideas for non\u2011technical stakeholders."
+    },
+    {
+      "name": "Debugging",
+      "score": 5,
+      "confidence": 0.96,
+      "evidence_quote": "First I'd pull the stack trace from the logs and reproduce locally with the exact failing payload. Then I'd check what changed in the deploy \u2014 a dependency version or a schema migration usually. Our repo pins FastAPI and SQLAlchemy in requirements.txt, so I'd diff those. I'd write a failing test that reproduces the 500 before touching code, fix the root cause, and confirm the test goes green, then redeploy.",
+      "reasoning": "Provides a thorough, step\u2011by\u2011step diagnostic and remediation plan for a failing FastAPI endpoint, showing strong debugging skills."
+    },
+    {
+      "name": "Problem decomposition",
+      "score": 5,
+      "confidence": 0.94,
+      "evidence_quote": "First I'd pull the stack trace from the logs and reproduce locally with the exact failing payload. Then I'd check what changed in the deploy \u2014 a dependency version or a schema migration usually. Our repo pins FastAPI and SQLAlchemy in requirements.txt, so I'd diff those. I'd write a failing test that reproduces the 500 before touching code, fix the root cause, and confirm the test goes green, then redeploy.",
+      "reasoning": "Breaks the problem into logical sub\u2011tasks (log analysis, environment diff, test creation, fix, verification), illustrating strong ability to decompose complex issues."
+    },
+    {
+      "name": "Shipping ability",
+      "score": 3,
+      "confidence": 0.4,
+      "evidence_quote": "I wrote a failing test that reproduces the 500 before touching code, fix the root cause, and confirm the test goes green, then redeploy.",
+      "reasoning": "Shows awareness of testing before shipping fixes, but lacks concrete examples of feature prioritization, release planning, or handling time\u2011boxed deliveries."
+    },
+    {
+      "name": "Technical depth",
+      "score": 5,
+      "confidence": 0.97,
+      "evidence_quote": "I built a RAG system for enterprise search that ingests product and support documents. For indexing I used a Chroma vector store with Google embeddings, chunking at roughly 512 tokens with a ten percent overlap so section boundaries don't split mid-paragraph. For retrieval I do top-k with cosine similarity, then pass the retrieved chunks to the LLM with source citations. I evaluated it with hit-rate at five, which was about zero point eight seven on our test queries, and p95 latency around four hundred and fifty milliseconds.",
+      "reasoning": "Demonstrates detailed knowledge of vector stores, embeddings, chunking strategy, retrieval metrics, and performance evaluation, indicating strong technical expertise."
+    }
+  ],
+  "overall_score": 4.6,
+  "recommendation": "borderline",
+  "recommendation_reasoning": "The candidate shows strong technical depth, clear communication, and a solid debugging process, but provides limited evidence of shipping large\u2011scale features or handling Git workflow, leading to a cautious hiring decision.",
+  "strengths": [
+    "Demonstrates concrete experience building a RAG system with performance metrics",
+    "Shows systematic debugging approach with logs, tests, and redeployment",
+    "Communicates complex concepts clearly to non\u2011technical audience",
+    "Uses appropriate testing framework (pytest) and writes critical test cases"
+  ],
+  "concerns": [
+    "Limited discussion of feature prioritization or shipping under time constraints",
+    "No explicit example of Git workflow, code reviews, or merge conflict handling",
+    "Scalability/auth considerations are only briefly mentioned (API\u2011key only)",
+    "Did not address multimodal image\u2011relevance modalities as asked"
+  ],
+  "guardrail_flags": [],
+  "github_grounded_questions_asked": 3
+}

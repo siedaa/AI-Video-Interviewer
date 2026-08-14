@@ -1,0 +1,116 @@
+{
+  "turns": [
+    {
+      "speaker": "agent",
+      "text": "Hello Sieda, thanks for joining. I'm FirstRound, an AI interviewer for Northwind Labs. Let's go through a few questions for the Junior AI Engineer role.",
+      "timestamp_ms": 1786716000000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Oh, hi. Uh... thank you. Sorry, I'm a little nervous. I'll try to be clear.",
+      "timestamp_ms": 1786716030000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "No problem at all. Can you describe a Retrieval-Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "timestamp_ms": 1786716060000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Okay so, um, sorry, let me start again. I built a RAG system using Chroma for the vector store, FastAPI for the service layer, and Google embeddings. I chunked the documents, embedded them, and retrieved with cosine similarity before passing context to the model. Sorry, I'm rambling — but I evaluated it with hit rate at about zero point eight five. Yes. That's right.",
+      "timestamp_ms": 1786716150000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In your AI-red-teaming-toolkit repo, the 01_extract_text.py script splits sections into about 700-word chunks. Why did you pick that chunk size and how does it affect downstream retrieval?",
+      "timestamp_ms": 1786716210000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "The, uh, the seven-hundred-word chunks in the red-teaming toolkit. Sorry. I chose seven hundred because, um, it keeps the section context intact, and it fits under the context window. I used PyMuPDF to extract, uh, text and images from the paper, and embedded everything with Gemini into Chroma. Sorry for the pauses.",
+      "timestamp_ms": 1786716300000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Imagine a FastAPI endpoint that should return image relevance scores but is returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix it?",
+      "timestamp_ms": 1786716360000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "If I saw a 500 after deployment, first thing I'd do — sorry — I'd check the logs and traceback, then reproduce it locally with the same payload. Then I'd compare the deployed dependencies to what's pinned in requirements. I would write a regression test first, then fix the root cause, then redeploy. Sorry, that's the method I use.",
+      "timestamp_ms": 1786716480000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "You claim to have implemented unit tests for the backend services. Which testing framework did you use, and can you give an example of a critical test case you wrote?",
+      "timestamp_ms": 1786716540000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I used pytest. Um, the critical test was one that sent a malformed payload to the relevance endpoint and asserted we return a four-two-two instead of a five-hundred, and a second one that mocked the vector store and checked the ordering of results. Sorry if that was too much.",
+      "timestamp_ms": 1786716630000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Explain the concept of RAG to a product manager who is not technical.",
+      "timestamp_ms": 1786716690000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "RAG, for a non-technical person — sorry, okay. It means we search the company documents first, take the most relevant pieces, and give them to the model as context, so the model answers from real sources. And each answer can be checked. That's the simplest way I can put it.",
+      "timestamp_ms": 1786716780000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In the flyrank-capstone-image-relevance repo you added a design doc, ORM models, and an image-tagging schema. Walk me through how you structured the database schema and why you chose those tables and relationships.",
+      "timestamp_ms": 1786716840000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "For the capstone repo, the schema had an images table, a tags table, and an image_tags join table with foreign keys and cascade deletes. I indexed image_id. Sorry — I did also add the mismatch guard rule to the design doc, as the commit message says.",
+      "timestamp_ms": 1786716930000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Do you have any questions for us before we close?",
+      "timestamp_ms": 1786716990000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Thank you. Sorry about the nerves — I think the technical answers were correct even if the delivery was rough. No questions from me.",
+      "timestamp_ms": 1786717020000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "candidate_name": "Sieda",
+  "role": "Junior AI Engineer",
+  "interview_date": "2026-08-14",
+  "duration_seconds": 1020,
+  "competencies": [
+    {
+      "name": "Communication",
+      "score": 3,
+      "confidence": 0.7,
+      "evidence_quote": "Sorry, I'm a little nervous. I'll try to be clear.",
+      "reasoning": "The candidate acknowledges nervousness and apologizes repeatedly, which slightly detracts from clarity, but the core information is still conveyed."
+    },
+    {
+      "name": "Debugging",
+      "score": 4,
+      "confidence": 0.9,
+      "evidence_quote": "If I saw a 500 after deployment, first thing I'd do \u2014 sorry \u2014 I'd check the logs and traceback, then reproduce it locally with the same payload. Then I'd compare the deployed dependencies to what's pinned in requirements. I would write a regression test first, then fix the root cause, then redeploy.",
+      "reasoning": "Provides a concrete, step\u2011by\u2011step plan for diagnosing and fixing a production error, demonstrating solid debugging skills."
+    },
+    {
+      "name": "Problem decomposition",
+      "score": 4,
+      "confidence": 0.85,
+      "evidence_quote": "RAG, for a non-technical person \u2014 sorry, okay. It means we search the company documents first, take the most relevant pieces, and give them to the model as context, so the model answers from real sources.",
+      "reasoning": "Effectively breaks down the RAG process into searchable documents, relevance selection, and context feeding, showing good decomposition ability."
+    },
+    {
+      "name": "Shipping ability",
+      "score": 2,
+      "confidence": 0.3,
+      "evidence_quote": "Thank you. Sorry about the nerves \u2014 I think the technical answers were correct even if the delivery was rough. No questions from me.",
+      "reasoning": "The candidate did not address the feature\u2011prioritization scenario, leaving uncertainty about their ability to plan and ship product features under constraints."
+    },
+    {
+      "name": "Technical depth",
+      "score": 4,
+      "confidence": 0.9,
+      "evidence_quote": "I built a RAG system using Chroma for the vector store, FastAPI for the service layer, and Google embeddings. I chunked the documents, embedded them, and retrieved with cosine similarity before passing context to the model.",
+      "reasoning": "Demonstrates knowledge of vector stores, embedding models, similarity search, and service architecture, indicating strong technical depth for a junior role."
+    }
+  ],
+  "overall_score": 3.4,
+  "recommendation": "borderline",
+  "recommendation_reasoning": "The candidate shows solid technical understanding and a systematic debugging approach, and can explain concepts to non\u2011technical audiences. However, communication is hampered by nervousness and there is no evidence of feature\u2011prioritization or shipping planning, which are critical for a junior engineer role.",
+  "strengths": [
+    "Clear understanding of Retrieval\u2011Augmented Generation architecture \u2013 \"I built a RAG system using Chroma for the vector store, FastAPI for the service layer, and Google embeddings. I chunked the documents, embedded them, and retrieved with cosine similarity before passing context to the model.\"",
+    "Systematic debugging methodology for production errors \u2013 \"If I saw a 500 after deployment, first thing I'd do \u2014 sorry \u2014 I'd check the logs and traceback, then reproduce it locally with the same payload. Then I'd compare the deployed dependencies to what's pinned in requirements. I would write a regression test first, then fix the root cause, then redeploy.\"",
+    "Ability to translate technical concepts for non\u2011technical stakeholders \u2013 \"RAG, for a non-technical person \u2014 sorry, okay. It means we search the company documents first, take the most relevant pieces, and give them to the model as context, so the model answers from real sources.\""
+  ],
+  "concerns": [
+    "Frequent apologies and nervous delivery may obscure key information \u2013 \"Sorry, I'm a little nervous. I'll try to be clear.\"",
+    "Did not provide an answer to the feature\u2011prioritization/shipping scenario, leaving that competency unproven \u2013 \"Thank you. Sorry about the nerves \u2014 I think the technical answers were correct even if the delivery was rough. No questions from me.\""
+  ],
+  "guardrail_flags": [],
+  "github_grounded_questions_asked": 3
+}

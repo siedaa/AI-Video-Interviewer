@@ -1,0 +1,116 @@
+{
+  "turns": [
+    {
+      "speaker": "agent",
+      "text": "Hello, thanks for joining. I'm FirstRound, an AI interviewer for Northwind Labs. Let's go through a few questions about your background and projects for the Junior AI Engineer role.",
+      "timestamp_ms": 1786716000000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Hi, yes, I'm ready. Thank you.",
+      "timestamp_ms": 1786716030000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Can you describe a Retrieval-Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "timestamp_ms": 1786716060000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I've worked on RAG systems. Basically you embed your documents, store the vectors in a vector database, and retrieve the most relevant ones to give to the model as context. I used embeddings and a vector store, and it worked well for question answering.",
+      "timestamp_ms": 1786716120000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In your AI-red-teaming-toolkit repo, the 01_extract_text.py script splits sections into about 700-word chunks. Why did you pick that chunk size and how does it affect downstream retrieval?",
+      "timestamp_ms": 1786716180000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I think chunk size matters. Seven hundred words is a reasonable size. Smaller chunks are more focused, larger chunks give more context. I didn't tune it much though, it just seemed like a good balance.",
+      "timestamp_ms": 1786716240000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In the flyrank-capstone-image-relevance repo you added a design doc, ORM models, and an image-tagging schema. Walk me through how you structured the database schema and why you chose those tables and relationships.",
+      "timestamp_ms": 1786716300000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "The schema was a relational database. I had a table for images, a table for tags, and a join table between them. That's a standard many-to-many design. It worked fine.",
+      "timestamp_ms": 1786716360000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Imagine a FastAPI endpoint that should return image relevance scores but is returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix it?",
+      "timestamp_ms": 1786716420000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I would check the server logs to see the error, then look at the code around where it fails, fix it, and redeploy. Probably it's a regression from the deployment.",
+      "timestamp_ms": 1786716480000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "You claim to have implemented unit tests for the backend services. Which testing framework did you use, and can you give an example of a critical test case you wrote?",
+      "timestamp_ms": 1786716540000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I used pytest. I wrote unit tests for the main functions, covering the happy path mainly. That's good practice and keeps the code reliable.",
+      "timestamp_ms": 1786716600000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Explain the concept of RAG to a product manager who is not technical.",
+      "timestamp_ms": 1786716660000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "RAG is giving the model extra documents so it has the context to answer from your own data instead of hallucinating. It's a good way to ground answers in real information.",
+      "timestamp_ms": 1786716720000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Do you have any questions for us before we close?",
+      "timestamp_ms": 1786716780000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "I think I covered everything. No questions from my side.",
+      "timestamp_ms": 1786716810000,
+      "node": "candidate_Qs",
+      "interrupted": false
+    }
+  ]
+}

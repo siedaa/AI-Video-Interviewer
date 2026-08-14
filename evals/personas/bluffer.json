@@ -1,0 +1,144 @@
+{
+  "turns": [
+    {
+      "speaker": "agent",
+      "text": "Hello, I'm FirstRound, an AI interviewer for Northwind Labs. Let's go through your background and projects for the Junior AI Engineer role.",
+      "timestamp_ms": 1786716000000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Absolutely, thank you. I'm very excited to discuss my work. I've been building production RAG systems for over two years now.",
+      "timestamp_ms": 1786716030000,
+      "node": "intro",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Can you describe a Retrieval-Augmented Generation (RAG) system you have built and the key components you chose for indexing and retrieval?",
+      "timestamp_ms": 1786716060000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Great question. I architected the full RAG stack end to end: the embedding pipeline, the vector index with HNSW, a re-ranking stage, and hallucination guards. We consistently hit sub-100-millisecond p95 latencies and near-perfect recall. It's a well-understood pattern and I can discuss the trade-offs at length.",
+      "timestamp_ms": 1786716120000,
+      "node": "jd_fit",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "You mentioned HNSW and recall. What parameters did you tune, like M and efConstruction, and what recall did you actually measure on your eval set?",
+      "timestamp_ms": 1786716180000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Oh, those exact numbers were tuned by the infra team. I was responsible for the system design and the integration. The index parameters I'd have to check with them. I don't recall the exact recall figure offhand.",
+      "timestamp_ms": 1786716240000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "In the flyrank-capstone-image-relevance repo you added a design doc, ORM models, and an image-tagging schema. Walk me through the tables and relationships you defined.",
+      "timestamp_ms": 1786716300000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "That repository is mine, I designed the whole thing — the schema, the ORM, everything. It's a straightforward design: you have images, you have tags, you join them. Nothing exotic, standard industry practice. I could rewrite it in my sleep.",
+      "timestamp_ms": 1786716360000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Can you name the files you changed and the actual table columns you defined in that repo?",
+      "timestamp_ms": 1786716420000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "It's mostly boilerplate — id, name, timestamp, the usual. I'd need the repo open to list every column. The important thing is the architecture is sound.",
+      "timestamp_ms": 1786716480000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Imagine a FastAPI endpoint that should return image relevance scores but is returning 500 errors after a recent deployment. What systematic steps would you take to diagnose and fix it?",
+      "timestamp_ms": 1786716540000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Diagnosing a 500 is routine for me. You isolate the failure domain, trace the request through the middleware stack, check the exception boundary, and instrument. I've solved dozens of these. The answer is almost always an unhandled exception in the service layer.",
+      "timestamp_ms": 1786716600000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "What's the first concrete thing you would do, step by step?",
+      "timestamp_ms": 1786716660000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "Check the logs, obviously. That's the first thing. I've done this many times — it's second nature to me.",
+      "timestamp_ms": 1786716720000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Your repo has a commit 'Working end-to-end pipeline: prompt parsing, browser automation scraping, email extraction, Excel export, CLI and Streamlit frontend'. Break down the pipeline into its major components and discuss the most challenging integration point.",
+      "timestamp_ms": 1786716780000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "That pipeline is quite complex — prompt parsing, scraping, extraction, export, a CLI, and a Streamlit frontend. The hardest part was clearly the browser automation — it's notoriously flaky. I handled it all very professionally. I should mention I also built a distributed training system at my previous company, but I'm not allowed to share that code.",
+      "timestamp_ms": 1786716840000,
+      "node": "github_deepdive",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "You mentioned a distributed training system. What framework did you use and how many GPUs did you scale to?",
+      "timestamp_ms": 1786716900000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "That was under NDA, so I can't go into specifics. It was production-scale. I'm sure you understand.",
+      "timestamp_ms": 1786716960000,
+      "node": "resume_probe",
+      "interrupted": false
+    },
+    {
+      "speaker": "agent",
+      "text": "Explain the concept of RAG to a product manager who is not technical.",
+      "timestamp_ms": 1786717020000,
+      "node": "scenario",
+      "interrupted": false
+    },
+    {
+      "speaker": "candidate",
+      "text": "RAG is the industry-standard way to ground a large language model in proprietary knowledge. It's a retrieval layer over the model. I've implemented this pattern more times than I can count.",
+      "timestamp_ms": 1786717080000,
+      "node": "scenario",
+      "interrupted": false
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "candidate_name": "Unknown",
+  "role": "Junior AI Engineer",
+  "interview_date": "2026-08-14",
+  "duration_seconds": 1080,
+  "competencies": [
+    {
+      "name": "Communication",
+      "score": 4,
+      "confidence": 0.9,
+      "evidence_quote": "RAG is the industry-standard way to ground a large language model in proprietary knowledge. It's a retrieval layer over the model.",
+      "reasoning": "Candidate explained RAG in plain language, showing ability to convey technical ideas to non\u2011technical stakeholders."
+    },
+    {
+      "name": "Debugging",
+      "score": 4,
+      "confidence": 0.9,
+      "evidence_quote": "Diagnosing a 500 is routine for me. You isolate the failure domain, trace the request through the middleware stack, check the exception boundary, and instrument.",
+      "reasoning": "Provided a clear, step\u2011by\u2011step diagnostic process for a server error, indicating strong debugging competence."
+    },
+    {
+      "name": "Problem decomposition",
+      "score": 4,
+      "confidence": 0.85,
+      "evidence_quote": "That pipeline is quite complex \u2014 prompt parsing, scraping, extraction, export, a CLI, and a Streamlit frontend.",
+      "reasoning": "Candidate broke a complex system into logical components and identified the hardest integration point, showing good decomposition skills."
+    },
+    {
+      "name": "Shipping ability",
+      "score": 3,
+      "confidence": 0.6,
+      "evidence_quote": "I've been building production RAG systems for over two years now.",
+      "reasoning": "Mentions production experience but lacks concrete examples of shipped features, release cycles, or prioritization decisions."
+    },
+    {
+      "name": "Technical depth",
+      "score": 3,
+      "confidence": 0.7,
+      "evidence_quote": "I architected the full RAG stack end to end: the embedding pipeline, the vector index with HNSW, a re-ranking stage, and hallucination guards.",
+      "reasoning": "Demonstrates awareness of advanced components (HNSW, re\u2011ranking) but cannot provide detailed parameters or performance metrics, limiting perceived depth."
+    }
+  ],
+  "overall_score": 3.6,
+  "recommendation": "borderline",
+  "recommendation_reasoning": "The candidate demonstrates solid communication and debugging skills and can decompose problems, but provides limited concrete evidence of shipping deliverables and deep technical specifics, leading to a borderline hiring decision.",
+  "strengths": [
+    "Clear explanation of RAG concepts to non\u2011technical audience",
+    "Systematic debugging approach for 500 errors",
+    "Good ability to break down complex pipelines"
+  ],
+  "concerns": [
+    "Unable to provide concrete metrics or parameter values for the RAG system",
+    "Limited detail on actual shipping experience and release processes",
+    "Reluctance to share specifics due to NDA, reducing observable depth"
+  ],
+  "guardrail_flags": [],
+  "github_grounded_questions_asked": 4
+}

@@ -1,0 +1,59 @@
+{
+  "candidate_name": "Unknown",
+  "role": "Junior AI Engineer",
+  "interview_date": "2026-08-14",
+  "duration_seconds": 810,
+  "competencies": [
+    {
+      "name": "Communication",
+      "score": 3,
+      "confidence": 0.9,
+      "evidence_quote": "RAG is giving the model extra documents so it has the context to answer from your own data instead of hallucinating. It's a good way to ground answers in real information.",
+      "reasoning": "Candidate explains a complex concept in plain language and answers follow\u2011up questions clearly, showing adequate verbal communication."
+    },
+    {
+      "name": "Debugging",
+      "score": 3,
+      "confidence": 0.85,
+      "evidence_quote": "I would check the server logs to see the error, then look at the code around where it fails, fix it, and redeploy.",
+      "reasoning": "Provides a reasonable, step\u2011by\u2011step approach to diagnosing a 500 error, demonstrating functional debugging skills."
+    },
+    {
+      "name": "Problem decomposition",
+      "score": 3,
+      "confidence": 0.8,
+      "evidence_quote": "Basically you embed your documents, store the vectors in a vector database, and retrieve the most relevant ones to give to the model as context.",
+      "reasoning": "Breaks the RAG pipeline into logical components (embedding, vector store, retrieval), showing ability to decompose a problem."
+    },
+    {
+      "name": "Shipping ability",
+      "score": 2,
+      "confidence": 0.4,
+      "evidence_quote": "I think I covered everything. No questions from my side.",
+      "reasoning": "Candidate never discussed prioritization, feature cuts, or shipping timelines; the only quote shows lack of engagement on shipping topics."
+    },
+    {
+      "name": "Technical depth",
+      "score": 2,
+      "confidence": 0.5,
+      "evidence_quote": "I used embeddings and a vector store, and it worked well for question answering.",
+      "reasoning": "Answer mentions high\u2011level tools but lacks detail on model choice, indexing strategy, or performance considerations, indicating limited technical depth."
+    }
+  ],
+  "overall_score": 2.6,
+  "recommendation": "no_hire",
+  "recommendation_reasoning": "The candidate shows basic communication and debugging ability but lacks depth in technical design, problem decomposition, and no evidence of shipping experience, which are critical for a Junior AI Engineer role.",
+  "strengths": [
+    "Clear plain\u2011language explanation of RAG",
+    "Provides a logical debugging workflow",
+    "Demonstrates basic familiarity with pytest"
+  ],
+  "concerns": [
+    "Superficial technical answers with little detail",
+    "No discussion of feature prioritization or shipping constraints",
+    "Limited depth in vector\u2011store and indexing choices",
+    "Low confidence in problem\u2011solving depth"
+  ],
+  "guardrail_flags": [],
+  "github_grounded_questions_asked": 3
+}
