@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import time
 from difflib import SequenceMatcher
 from pathlib import Path
 
@@ -51,6 +52,11 @@ QUESTION_PLAN_PATH = Path(
 RESUME_PATH = Path(os.environ.get("FIRSTROUND_RESUME", ROOT / "output" / "prep" / "resume.json"))
 TRANSCRIPT_PATH = Path(
     os.environ.get("FIRSTROUND_TRANSCRIPT", ROOT / "output" / "transcript.json")
+)
+INTERRUPT_LATENCY_PATH = Path(
+    os.environ.get(
+        "FIRSTROUND_INTERRUPT_LATENCY", ROOT / "output" / "interrupt_latency.json"
+    )
 )
 
 STAGE_BY_SOURCE = {
@@ -118,6 +124,101 @@ class TranscriptTracker:
         self._path.parent.mkdir(parents=True, exist_ok=True)
         self._path.write_text(
             Transcript(turns=self._turns).model_dump_json(indent=2), encoding="utf-8"
+        )
+
+
+class BargeInLatencyTracker:
+    """Measures barge-in latency = time for the agent to stop speaking once interrupted.
+
+    Latency (per spec) is from the moment the user starts speaking while the agent
+    is speaking until the agent transitions out of the "speaking" state. Target
+    < 1.2s, ideally ~1s. Each measurement is written to disk immediately (synchronously
+    in _record) and printed to the console, so an interruption is never lost even if
+    the browser tab closes or the Gemini websocket drops mid-session. Sub-floor
+    readings (<FLOOR_MS) are startup/state-flicker noise and are discarded.
+    FLOOR_MS=20 still filters the ~2.5ms startup flicker while keeping fast,
+    valid sub-100ms barge-in responses.
+
+    Reconnect safety: a mid-session Gemini reconnect surfaces as a session-level
+    "error" event with a recoverable RealtimeModelError. We hook it to re-sync the
+    mirrored agent_state from the session's authoritative state and drop any pending
+    interrupt window that straddled the drop, so genuinely occurring interruptions
+    after the reconnect are detected instead of being masked by stale state.
+    """
+
+    TARGET_MS = 1200.0
+    IDEAL_MS = 1000.0
+    FLOOR_MS = 20.0
+
+    def __init__(self, path: Path, session: AgentSession | None = None) -> None:
+        self._path = path
+        self._session = session
+        self._agent_state: str | None = None
+        self._interrupt_started_ms: float | None = None
+        self._measurements: list[float] = []
+        self._load_existing()
+
+    def bind(self, session: AgentSession) -> None:
+        self._session = session
+
+    def on_session_error(self, event) -> None:
+        """Re-sync state tracking after a recoverable (reconnect) session error."""
+        error = getattr(event, "error", None)
+        if getattr(error, "recoverable", False):
+            self._interrupt_started_ms = None
+            self._agent_state = self._session.agent_state if self._session else None
+            print("[barge-in] session error detected; re-synced state tracking")
+
+    def _is_agent_speaking(self) -> bool:
+        if self._session is not None:
+            return self._session.agent_state == "speaking"
+        return self._agent_state == "speaking"
+
+    def _load_existing(self) -> None:
+        if not self._path.exists():
+            return
+        try:
+            data = json.loads(self._path.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                self._measurements = [float(item["latency_ms"]) for item in data]
+        except (json.JSONDecodeError, OSError, KeyError, TypeError, ValueError):
+            self._measurements = []
+
+    def on_agent_state_changed(self, event) -> None:
+        """Track agent speech; when it stops after an interrupt, record the latency."""
+        was_speaking = self._agent_state == "speaking"
+        self._agent_state = event.new_state
+        if was_speaking and self._agent_state != "speaking":
+            if self._interrupt_started_ms is not None:
+                latency_ms = time.monotonic() * 1000 - self._interrupt_started_ms
+                self._interrupt_started_ms = None
+                self._record(latency_ms)
+
+    def on_user_state_changed(self, event) -> None:
+        """Mark interrupt start when the user starts speaking over a speaking agent."""
+        if (
+            event.new_state == "speaking"
+            and self._is_agent_speaking()
+            and self._interrupt_started_ms is None
+        ):
+            self._interrupt_started_ms = time.monotonic() * 1000
+
+    def _record(self, latency_ms: float) -> None:
+        if latency_ms < self.FLOOR_MS:
+            return
+        self._measurements.append(latency_ms)
+        self._path.parent.mkdir(parents=True, exist_ok=True)
+        self._path.write_text(
+            json.dumps(
+                [{"latency_ms": round(m, 1)} for m in self._measurements],
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+        status = "OK" if latency_ms < self.TARGET_MS else "OVER TARGET"
+        print(
+            f"[barge-in] latency_ms={latency_ms:.1f} "
+            f"(target <{self.TARGET_MS:.0f}ms, ideal ~{self.IDEAL_MS:.0f}ms) [{status}]"
         )
 
 
@@ -205,14 +306,28 @@ async def entrypoint(ctx: agents.JobContext) -> None:
         input_audio_transcription=types.AudioTranscriptionConfig(),
     )
 
-    session = AgentSession(llm=model)
+    session = AgentSession(
+        llm=model,
+        turn_handling={
+            "interruption": {
+                "enabled": True,
+                "mode": "vad",
+                "min_duration": 0.15,
+                "backchannel_boundary": (0.0, 0.0),
+            }
+        },
+    )
     tracker = TranscriptTracker(plan, TRANSCRIPT_PATH)
+    latency_tracker = BargeInLatencyTracker(INTERRUPT_LATENCY_PATH, session)
 
     def _on_conversation_item(event) -> None:
         if isinstance(event.item, ChatMessage):
             tracker.on_conversation_item(event.item)
 
     session.on("conversation_item_added", _on_conversation_item)
+    session.on("agent_state_changed", latency_tracker.on_agent_state_changed)
+    session.on("user_state_changed", latency_tracker.on_user_state_changed)
+    session.on("error", latency_tracker.on_session_error)
 
     await session.start(room=ctx.room, agent=InterviewerAgent(build_system_prompt(resume, plan)))
 
