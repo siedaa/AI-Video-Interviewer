@@ -6,6 +6,7 @@
 
 - **GitHub repo:** https://github.com/siedaa/AI-Video-Interviewer — **currently private; 
 - **MCP-in-Claude-Desktop proof:** `docs/screenshots/mcp_claude_desktop1.png`, `docs/screenshots/mcp_claude_desktop2.png` (5 tools live in Claude Desktop).
+- **HITL gate proof:** `docs/screenshots/hitl_gate1.png`, `docs/screenshots/hitl_gate2.png` (`run_graph.py` paused at the question-plan review with the `[approve / edit / reject]` prompt).
 - **Code video / demo video / raw recording:** completed and uplaoded
 
 ## What works — the 12 core requirements
@@ -18,7 +19,7 @@
 | 4 | GitHub grounding | **Pass** | 12-question plan, **4** `source=github` questions citing real repos/files (`output/prep/question_plan.json`). |
 | 5 | LangGraph (≥6 nodes, ≥2 cond. edges, checkpointer) | **Pass** | 6 nodes, 2 conditional edges (`route_github`, `route_approval`), `SqliteSaver` on `checkpoint.db`. Diagram in `ARCHITECTURE.md`. |
 | 6 | Adaptive follow-up (shallow → probe, max 2) | **Pass** | Prompt-driven (PRD §5 decision), cap of 2 enforced by instruction; probing visible in the real transcript. Not a graph edge — stated honestly. |
-| 7 | HITL gate (approve/edit/reject) | **Pass** | `run_graph.py` genuinely pauses; all three actions tested. Caveat below. |
+| 7 | HITL gate (approve/edit/reject) | **Pass** | `run_graph.py` genuinely pauses; all three actions tested. Screenshots: `docs/screenshots/hitl_gate1.png`, `hitl_gate2.png`. Caveat below. |
 | 8 | Custom MCP server (≥5 tools in Claude Desktop) | **Pass** | 5 tools (`get_candidate`, `get_question_plan`, `save_score`, `get_scorecard`, `list_interviews`), screenshot proof. |
 | 9 | Guardrails (banned topics + no-quote-no-score) | **Pass** | `src/guardrails/banned_questions.py` (8 categories) + `evidence_check.py`; pytest coverage in `tests/`. |
 | 10 | Scorecard (per-competency, quote, confidence, verdict) | **Pass** | `output/scorecard.json` matches spec §6 schema verbatim. |

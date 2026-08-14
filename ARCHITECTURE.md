@@ -47,7 +47,7 @@ Node-by-node (`src/graph.py`):
 | `request_github_manually` | interrupt → resume override | Only reached when the resume has no GitHub URL; `interrupt()` asks the CLI for a username, merged back into `resume.github_url` |
 | `github_agent` | `resume.github_url` + `GITHUB_PAT` → `state["github_findings"]` | GitHub REST (PyGithub): repos, languages, recent commits, README + real file excerpts for the top repos |
 | `question_planner` | jd + resume + github_findings → `state["question_plan"]` (12 questions) | Sets `approval_status = "pending"` |
-| `hitl_gate` | `interrupt()` → Command resume | Suspends the graph; approve writes the plan file, edit applies edits + loops back, reject writes nothing |
+| `hitl_gate` | `interrupt()` → Command resume | Suspends the graph; approve writes the plan file, edit applies edits + loops back, reject writes nothing. Live proof: `docs/screenshots/hitl_gate1.png` / `hitl_gate2.png` show `run_graph.py` paused at the `[approve / edit / reject]` prompt |
 
 **The 2 conditional edges are both real and data-dependent:**
 - `route_github` (`src/graph.py:131`) — branches on whether the parsed resume has a GitHub URL.
