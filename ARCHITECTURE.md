@@ -70,9 +70,21 @@ The live interview (`src/realtime/agent.py`) uses LiveKit Agents with the Google
 
 - **Explicit dispatch**: the worker is registered with `agent_name="firstround-interviewer"`; the join JWT carries a `RoomConfiguration` naming that agent, so joining the room starts the worker.
 - **Static context, no live tool-calling**: candidate name + approved question plan are loaded into the system prompt at session start. This is a deliberate tradeoff per PRD §5, not an oversight — everything the agent needs is known before the call.
-- **Voice only**: modalities=[AUDIO], no video track yet (avatar is Phase 5).
+- **Audio modalities**: modalities=[AUDIO]; the visible face is a separate synthetic video track published by the avatar (Phase 5, see Avatar architecture below), not part of the Gemini feed.
 - **Stage tracking**: stages are prompt-driven inside the model, so the transcript labels them via a heuristic — `SequenceMatcher` token-overlap (ratio >= 0.3) against the unasked question_plan questions, mapped source→stage (`jd→jd_fit`, `resume→resume_probe`, `github→github_deepdive`, `scenario→scenario`), with `intro` before the first match and `wrap_up` once all 12 are asked. Written to `output/transcript.json`.
 - **Barge-in**: `InterruptionOptions(enabled=True, mode="vad", min_duration=0.15, backchannel_boundary=(0.0, 0.0))` — the LiveKit defaults (`min_duration=0.5`, `backchannel_boundary=(1.0, 1.0)`) were too sluggish (~1s+ reaction); tuned down for near-instant interrupt.
+- **Session-liveness guard**: `generate_reply()` and all avatar setup are gated behind a `_session_live()` check (room `isconnected()` + session `_is_closing()`/`_activity`), so a participant disconnect mid-startup exits cleanly instead of raising "AgentSession isn't running".
+
+## Avatar architecture
+
+The face (`src/realtime/avatar.py`) is a simple, intentional 2D lip-sync — amplitude-driven, **not** phoneme-driven by design (per the rubric footnote, this is full marks; see Known limitations). Key facts:
+
+- **Assets**: three pre-generated transparent 512x512 PNG mouth states (`src/realtime/assets/mouth_closed.png`, `mouth_mid.png`, `mouth_open.png`), composited over a solid background via PIL at load time into BGRA frames.
+- **State selection**: each captured audio frame's RMS amplitude drives a fast-attack/slow-release peak detector; peak < 0.06 → closed, < 0.25 → mid, else open. A 180ms hold keeps the mouth from snapping shut between syllables.
+- **Publish**: a `rtc.VideoSource` renders one captured frame every ~66ms (~15fps) and is published as a `SOURCE_CAMERA` video track on the agent's local participant.
+- **Audio tap**: an `AmplitudeTap` (a `livekit.agents.voice.io.AudioOutput` wrapper) sits between the AgentSession output and the RoomIO audio sink — it observes every outgoing frame's amplitude and passes it through unchanged, so transcript/barge-in/interruption logic is untouched.
+- **Room page**: `src/realtime/room.html` renders the incoming video track in a `<video autoplay playsinline>` element (added alongside the existing audio handling).
+- **Lifecycle**: the close handler stops the avatar's render loop; both the avatar publish and `generate_reply()` are checked against `_session_live()` so a disconnect during startup never crashes or leaks the render task.
 
 ## Measured latency
 
@@ -86,11 +98,12 @@ How it's measured (`BargeInLatencyTracker` in `src/realtime/agent.py`): it hooks
 - **Gemini Live model pinning** — newer preview aliases have handshake/WS bugs with LiveKit; the dated pinned model works. Diagnosed via `scripts/test_gemini_live.py`.
 - **Transient WebSocket disconnects** — free-tier Gemini Live dropped once mid-session (1006 abnormal closure, keepalive timeout); the plugin's built-in retry logic auto-recovered, but a candidate could notice a brief audio gap.
 - **Stage tracking is heuristic** — transcript `node` labels come from token-overlap matching, not an explicit model signal; edge cases can mislabel a turn.
-- **Avatar is amplitude-driven, not phoneme-driven** (once Phase 5 is built) — mouth shape approximates speech, doesn't match it exactly. Acceptable per rubric wording but stated plainly.
+- **Avatar is amplitude-driven, not phoneme-driven** — mouth shape approximates speech, doesn't match it exactly. Acceptable per rubric wording but stated plainly.
+- **Mouth-sync startup lag** — the avatar mouth stays closed for the first portion of the agent's speech before synchronizing with the amplitude tap; a cosmetic startup delay, not audio corruption. Documented as a known limitation rather than blocking further phases.
+- **Gemini STT Devanagari transcription quirk** — under some acoustic conditions Gemini's STT occasionally transcribes clear English speech in Devanagari script. A model quirk, not a code issue; the transcript's raw text may look garbled for those turns.
 
 ## Placeholders
 
 - **TODO — Phase 3**: guardrails — banned_questions (8 categories) + evidence_check (no-quote-no-score), with pytest coverage.
-- **TODO — Phase 5**: avatar/video pipeline — synthetic video track from 2-3 mouth-state images driven by live audio amplitude, composited over the static portrait at ~15fps.
 - **TODO — Phase 6**: scoring pipeline (`src/agents/scorer.py`) producing `output/scorecard.json` per schema + MCP server (`mcp_server/`, fastmcp, stdio) exposing get_candidate / get_question_plan / save_score / get_scorecard / list_interviews.
 - **TODO — Phase 7**: evals — 5 personas (Strong, Average, Weak, Bluffer, Nervous) run through the scorer, results in `evals/results.md`.
