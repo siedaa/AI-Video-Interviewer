@@ -12,6 +12,7 @@ Run:
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import sys
@@ -35,12 +36,14 @@ os.environ.pop("GEMINI_API_KEY", None)
 
 from google.genai import types  # noqa: E402
 
-from livekit import agents  # noqa: E402
+from livekit import agents, rtc  # noqa: E402
 from livekit.agents import Agent, AgentServer, AgentSession, AutoSubscribe  # noqa: E402
 from livekit.agents.llm import ChatMessage  # noqa: E402
 from livekit.plugins import google  # noqa: E402
 
 from src.schemas import QuestionPlan, ResumeInfo, Transcript, Turn  # noqa: E402
+
+from src.realtime.avatar import AmplitudeTap, Avatar  # noqa: E402
 
 PINNED_GEMINI_LIVE_MODEL = "gemini-2.5-flash-native-audio-preview-12-2025"
 GEMINI_REALTIME_MODEL = os.environ.get(
@@ -57,6 +60,9 @@ INTERRUPT_LATENCY_PATH = Path(
     os.environ.get(
         "FIRSTROUND_INTERRUPT_LATENCY", ROOT / "output" / "interrupt_latency.json"
     )
+)
+AVATAR_ASSETS_DIR = Path(
+    os.environ.get("FIRSTROUND_AVATAR_ASSETS", Path(__file__).resolve().parent / "assets")
 )
 
 STAGE_BY_SOURCE = {
@@ -292,6 +298,24 @@ ADAPTIVE FOLLOW-UP BEHAVIOR:
 server = AgentServer()
 
 
+def _session_live(session: AgentSession, room: rtc.Room) -> bool:
+    """True while the room is connected AND the AgentSession is still running.
+
+    The room's connection state alone is not sufficient: when the candidate
+    disconnects, RoomIO schedules an async session teardown (session._close_soon)
+    while the agent's own room connection stays up. So we additionally mirror the
+    exact internal state generate_reply()/avatar setup rely on — the session's
+    closing flag and its activity object (nulled once teardown finishes).
+    """
+    if not room.isconnected():
+        return False
+    if getattr(session, "_is_closing", lambda: False)():
+        return False
+    if getattr(session, "_activity", None) is None:
+        return False
+    return True
+
+
 @server.rtc_session(agent_name="firstround-interviewer")
 async def entrypoint(ctx: agents.JobContext) -> None:
     await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
@@ -330,6 +354,28 @@ async def entrypoint(ctx: agents.JobContext) -> None:
     session.on("error", latency_tracker.on_session_error)
 
     await session.start(room=ctx.room, agent=InterviewerAgent(build_system_prompt(resume, plan)))
+
+    # The session can be torn down at any point after start() returns (e.g. the
+    # candidate's connection blips). Wire the avatar + close handler immediately
+    # so a mid-setup close still stops the render loop cleanly.
+    avatar = Avatar(AVATAR_ASSETS_DIR)
+
+    def _on_session_close(_event) -> None:
+        asyncio.get_running_loop().create_task(avatar.stop())
+
+    session.on("close", _on_session_close)
+
+    if not _session_live(session, ctx.room):
+        print("[entrypoint] session closed during startup; skipping avatar + intro")
+        return
+
+    await avatar.publish(ctx.room)
+    avatar.start()
+    session.output.audio = AmplitudeTap(avatar, session.output.audio)
+
+    if not _session_live(session, ctx.room):
+        print("[entrypoint] session closed during avatar setup; skipping intro")
+        return
 
     await session.generate_reply(
         instructions=(
