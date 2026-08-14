@@ -7,43 +7,76 @@
 </head>
 <body>
   <h3>FirstRound test room</h3>
-  <p id="status">connecting…</p>
-  <audio id="agent-audio" autoplay></audio>
+  <p id="status">ready — click Join Interview to start</p>
+  <button id="join-btn">Join Interview</button>
+  <audio id="agent-audio"></audio>
+  <video id="agent-video" autoplay playsinline></video>
   <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
   <script>
-    (async () => {
+    (() => {
       const params = new URLSearchParams(location.search);
       const url = params.get('url');
       const token = params.get('token');
       const status = document.getElementById('status');
-      const audioEl = document.getElementById('agent-audio');
+const audioEl = document.getElementById('agent-audio');
+        const videoEl = document.getElementById('agent-video');
+        const joinBtn = document.getElementById('join-btn');
 
-      if (!url || !token) {
-        status.textContent = 'missing url or token query params';
-        return;
+      let audioCtx = null;
+
+      // Unlock the Web Audio autoplay policy. Must run synchronously at the top
+      // of the click handler (a direct user gesture) before any await.
+      function unlockAudio() {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
       }
 
-      const room = new LivekitClient.Room({ adaptiveStream: true });
+      joinBtn.addEventListener('click', async () => {
+        // 1) Synchronously inside the click handler: create + resume the
+        //    AudioContext. This grants the page a user-activation so the
+        //    browser will allow audio playback for the rest of the session.
+        unlockAudio();
+        status.textContent = 'connecting…';
+        joinBtn.disabled = true;
 
-      room
-        .on(LivekitClient.RoomEvent.TrackSubscribed, (track) => {
-          if (track.kind === LivekitClient.Track.Kind.Audio) {
-            track.attach(audioEl);
-            audioEl.play().catch(() => {});
-            status.textContent = 'agent audio attached';
-          }
-        })
-        .on(LivekitClient.RoomEvent.Disconnected, () => {
-          status.textContent = 'disconnected';
-        });
+        if (!url || !token) {
+          status.textContent = 'missing url or token query params';
+          joinBtn.disabled = false;
+          return;
+        }
 
-      try {
-        await room.connect(url, token, { autoSubscribe: true });
-        await room.localParticipant.setMicrophoneEnabled(true);
-        status.textContent = 'connected — agent should join and greet you';
-      } catch (err) {
-        status.textContent = 'connect failed: ' + (err && err.message ? err.message : err);
-      }
+        const room = new LivekitClient.Room({ adaptiveStream: true });
+
+        room
+          .on(LivekitClient.RoomEvent.TrackSubscribed, (track) => {
+            if (track.kind === LivekitClient.Track.Kind.Audio) {
+              track.attach(audioEl);
+              // Re-arm the context (already unlocked by the click) then play.
+              if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume().catch(() => {});
+              }
+              audioEl.play().catch(() => {});
+              status.textContent = 'agent audio attached';
+            } else if (track.kind === LivekitClient.Track.Kind.Video) {
+              track.attach(videoEl);
+              status.textContent = 'agent video attached';
+            }
+          })
+          .on(LivekitClient.RoomEvent.Disconnected, () => {
+            status.textContent = 'disconnected';
+          });
+
+        try {
+          await room.connect(url, token, { autoSubscribe: true });
+          await room.localParticipant.setMicrophoneEnabled(true);
+          status.textContent = 'connected — agent should join and greet you';
+        } catch (err) {
+          status.textContent = 'connect failed: ' + (err && err.message ? err.message : err);
+          joinBtn.disabled = false;
+        }
+      });
     })();
   </script>
 </body>
