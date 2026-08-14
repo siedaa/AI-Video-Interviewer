@@ -293,7 +293,11 @@ def main(argv: list[str] | None = None) -> int:
     transcript_path = Path(argv[0]) if len(argv) >= 1 else root / "output" / "transcript.json"
     plan_path = Path(argv[1]) if len(argv) >= 2 else root / "output" / "prep" / "question_plan.json"
     out_path = Path(argv[2]) if len(argv) >= 3 else root / "output" / "scorecard.json"
+    report_path = Path(argv[3]) if len(argv) >= 4 else root / "output" / "report.pdf"
     run(transcript_path, plan_path, out_path)
+    from src.agents import report_generator
+
+    report_generator.run(out_path, transcript_path, report_path)
     return 0
 
 
