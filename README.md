@@ -1,4 +1,4 @@
- AI Video Interviewer
+ ### **AI Video Interviewer**
 
 An AI that parses a real JD + resume + GitHub repos into a recruiter-approved question plan, joins a LiveKit video call as a face + voice (Gemini Live + a 2D lip-synced avatar), interviews the candidate live with adaptive follow-ups and instant barge-in, produces an evidence-quote-backed scorecard, and exposes everything through an MCP server for Claude Desktop.
 
